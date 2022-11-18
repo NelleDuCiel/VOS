@@ -12,8 +12,8 @@ import { Subject } from 'rxjs';
 /**
  * Shopping Metrics Component
  * 
- * Place for additional shopping cart metrics ...
- * eg.: Nutritional Information etc.
+ * Place for additional winkelwagen metrics ...
+ * eg.: Voedingswaarden etc.
  */
 @Component({
   selector: 'app-shopping-metrics',
@@ -59,7 +59,7 @@ export class ShoppingMetricsComponent implements OnInit {
 
   /**
    * 
-   * @returns {Number} Sum of Items in shopping cart
+   * @returns {Number} Sum of Items in winkelwagen
    * For html page
    */
   calculateSumOfItems() {

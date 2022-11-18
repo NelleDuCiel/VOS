@@ -90,7 +90,7 @@ let TrialSchema = new Schema({
     questions2: Object,
   }
 }, { timestamps: true }).index({treatmentID: 1, subjectID: 1});
-/**Nested schema for shopping cart */
+/**Nested schema for winkelwagen */
 let CartSchema = new Schema({
   treatmentID: String,
   subjectID: String,

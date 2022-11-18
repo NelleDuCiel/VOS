@@ -347,7 +347,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Funtion for changing the amount of an item already in the shopping cart.</p>
+                    <div class="io-description"><p>Funtion for changing the amount of an item already in the winkelwagen.</p>
 </div>
 
                     <div class="io-description">
@@ -649,7 +649,7 @@ Sets the cart variable.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Function for updating the shopping cart and recording the shopping cart event.</p>
+                    <div class="io-description"><p>Function for updating the winkelwagen and recording the winkelwagen event.</p>
 </div>
 
                     <div class="io-description">
@@ -724,7 +724,7 @@ Sets the cart variable.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Holds current shopping cart. </p>
+                        <div class="io-description"><p>Holds current winkelwagen. </p>
 </div>
                     </td>
                 </tr>
@@ -783,7 +783,7 @@ import { environment } from &#x27;src/environments/environment&#x27;;
   providedIn: &#x27;root&#x27;
 })
 export class ShoppingCartService {
-  /**Holds current shopping cart. */
+  /**Holds current winkelwagen. */
   cart: any[] &#x3D; [];
   /**Eventemitter for updateing remaining budget if items are added to a cart. */
   showRemainder &#x3D; new EventEmitter();
@@ -879,7 +879,7 @@ export class ShoppingCartService {
   }
 
   /**
-   * Funtion for changing the amount of an item already in the shopping cart.
+   * Funtion for changing the amount of an item already in the winkelwagen.
    * @param {Object} item 
    * @param {Number} delta 
    */
@@ -890,7 +890,7 @@ export class ShoppingCartService {
   }
 
   /**
-   * Function for updating the shopping cart and recording the shopping cart event.
+   * Function for updating the winkelwagen and recording the winkelwagen event.
    * @param {Object} obj 
    * @param {String} obj.identifier (&#x27;change&#x27; | &#x27;deletion&#x27; | &#x27;addition&#x27;)
    * @param {String} obj.itemID

@@ -126,7 +126,7 @@ export class FoodCardComponent implements OnInit {
     }
     return taxes;
   }
-  /**Click listener for add item to shopping cart button on template.
+  /**Click listener for add item to winkelwagen button on template.
    * @emits $recordEvent
    */
   addToCart() {

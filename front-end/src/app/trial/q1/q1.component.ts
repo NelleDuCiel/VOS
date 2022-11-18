@@ -274,7 +274,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... schnell und unkompliziert meinen shopping cart bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
+          "text": "... schnell und unkompliziert meinen winkelwagen bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
           "identifier": "expsq.10.2",
           "value": null,
           "scale": {

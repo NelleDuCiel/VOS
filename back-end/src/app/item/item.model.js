@@ -50,7 +50,7 @@ let ItemSchema = new Schema({
     full: String
   },
 
-  ingredients: { type: String },
+  ingrediënten: { type: String },
   allergens: { type: String },
   baseAttributes: [String],
 

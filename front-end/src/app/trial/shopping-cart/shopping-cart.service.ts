@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  /**Holds current shopping cart. */
+  /**Holds current winkelwagen. */
   cart: any[] = [];
   /**Eventemitter for updateing remaining budget if items are added to a cart. */
   showRemainder = new EventEmitter();
@@ -101,7 +101,7 @@ export class ShoppingCartService {
   }
 
   /**
-   * Funtion for changing the amount of an item already in the shopping cart.
+   * Funtion for changing the amount of an item already in the winkelwagen.
    * @param {Object} item 
    * @param {Number} delta 
    */
@@ -112,7 +112,7 @@ export class ShoppingCartService {
   }
 
   /**
-   * Function for updating the shopping cart and recording the shopping cart event.
+   * Function for updating the winkelwagen and recording the winkelwagen event.
    * @param {Object} obj 
    * @param {String} obj.identifier ('change' | 'deletion' | 'addition')
    * @param {String} obj.itemID

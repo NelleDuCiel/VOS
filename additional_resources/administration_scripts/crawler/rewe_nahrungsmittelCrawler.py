@@ -144,14 +144,14 @@ for q in queries:
                 if 0 < len(attr.contents) < 2:
                     continue
                 else:
-                    item["ingredients"] = attr.contents[1]
+                    item["ingrediënten"] = attr.contents[1]
             # for content information { contentType: string (fluid, solid), amountInKG: number, displayAmount: string (g, kg) }
             # signifies if bio, etc... 
             if 'Eigenschaften' in attr.contents[0]:
                 if 'baseAttributes' not in item.keys():
                     item['baseAttributes'] = []
                 item['baseAttributes'] = attr.contents[1].split(', ')        
-        # for nutritional information
+        # for Voedingswaarden
         if len(soup.select('table.pdr-NutritionTable td')) > 0:
             item['nutritionalTable'] = {}
             td = soup.select('table.pdr-NutritionTable td')

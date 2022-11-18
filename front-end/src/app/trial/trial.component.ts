@@ -101,7 +101,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * @returns {number} The Sum of all items in the shopping cart
+   * @returns {number} The Sum of all items in the winkelwagen
    */
   get sumCart() {
     return this.shoppingCartService.calcSumPriceOfItems();
@@ -114,7 +114,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
     return this.trialTreatmentService.getCurrency();
   }
 
-  /**Provides length of cart array to button badge on shopping cart button.
+  /**Provides length of cart array to button badge on winkelwagen button.
    * @returns {Number}
    */
   get numberOfItems() {
@@ -122,7 +122,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * @returns {boolean} The specified display option for show shopping cart sum
+   * @returns {boolean} The specified display option for show winkelwagen sum
    */
   get showSum() {
     return this.trialTreatmentService.getDisplayOptions().showSum;
@@ -150,7 +150,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * returns if a popover shopping cart should be displayed
+   * returns if a popover winkelwagen should be displayed
    */
   get showPopOverCart() {
     // return true;
@@ -223,7 +223,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * OnClick listener for route to shopping cart button. 
+   * OnClick listener for route to winkelwagen button. 
    * Emits show back event, for displaying arrow back for navigation, 
    * 
    */

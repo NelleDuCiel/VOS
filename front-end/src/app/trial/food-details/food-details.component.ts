@@ -15,7 +15,7 @@ import { SwapOptDialogComponent } from '../swap-opt-dialog/swap-opt-dialog.compo
  * Food Details Component
  * 
  * Displays detail information saved to a individual product.
- * - Nutritional information
+ * - Voedingswaarden
  * - product details
  * - Labels
  * - Score
@@ -184,7 +184,7 @@ export class FoodDetailsComponent implements OnInit, AfterViewInit {
       this.counter -= 1;
     }
   }
-  /**Click listener for add item to shopping cart button on template.
+  /**Click listener for add item to winkelwagen button on template.
    * @emits $recordEvent
    */
   addToCart(): void {

@@ -273,7 +273,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... schnell und unkompliziert meinen shopping cart bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
+          "text": "... schnell und unkompliziert meinen winkelwagen bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
           "identifier": "ppsq.10.2",
           "value": null,
           scale: {
@@ -382,7 +382,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          text: 'Die productauswahl und der Preis des von mir zusammengestellten shopping carts entspricht weitestgehend meinem regulären Einkaufsverhalten.',
+          text: 'Die productauswahl und der Preis des von mir zusammengestellten winkelwagens entspricht weitestgehend meinem regulären Einkaufsverhalten.',
           identifier: 'dmd.2',
           value: null, 
           scale: {

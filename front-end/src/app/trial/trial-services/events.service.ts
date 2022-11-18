@@ -144,7 +144,7 @@ export class EventsService {
   }
   /**
    * Triggered when checkout button in shopping-metrics.component is pressed
-   * PUT request saves the final shopping cart to trial data.
+   * PUT request saves the final winkelwagen to trial data.
    * @param {Array} cart 
    * @returns {Observable}
    */

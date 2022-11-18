@@ -188,7 +188,7 @@ module.exports = function (app) {
 
   // calles when checked out // for questionnaire purposes
   /**
-   * Shopping cart data recording route for final shopping cart
+   * winkelwagen data recording route for final winkelwagen
    * @param treatmentID
    * @param subjectID
    * @param body
@@ -329,7 +329,7 @@ module.exports = function (app) {
     }
   );
 
-  // shopping cart add item etc.
+  // winkelwagen add item etc.
   /**
    * Push transaction information to trial data
    * @param treatmentID
@@ -403,7 +403,7 @@ module.exports = function (app) {
     }
   );
 
-  // Save and update current shopping cart
+  // Save and update current winkelwagen
   app.put(
     '/trial/currentCart/:treatmentID/:subjectID',
     checkActiveTrial,

@@ -644,7 +644,7 @@ if not already on products page navigates there.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>OnClick listener for route to shopping cart button. 
+                    <div class="io-description"><p>OnClick listener for route to winkelwagen button. 
 Emits show back event, for displaying arrow back for navigation, </p>
 </div>
 
@@ -996,7 +996,7 @@ Can be false if trial already ended.  </p>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Provides length of cart array to button badge on shopping cart button.</p>
+                                <div class="io-description"><p>Provides length of cart array to button badge on winkelwagen button.</p>
 </div>
 
                                 <div>
@@ -1143,7 +1143,7 @@ Can be false if trial already ended.  </p>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>returns if a popover shopping cart should be displayed</p>
+                                <div class="io-description"><p>returns if a popover winkelwagen should be displayed</p>
 </div>
 
                         </td>
@@ -1257,7 +1257,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * @returns {number} The Sum of all items in the shopping cart
+   * @returns {number} The Sum of all items in the winkelwagen
    */
   get sumCart() {
     return this.shoppingCartService.calcSumPriceOfItems();
@@ -1270,7 +1270,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
     return this.trialTreatmentService.getCurrency();
   }
 
-  /**Provides length of cart array to button badge on shopping cart button.
+  /**Provides length of cart array to button badge on winkelwagen button.
    * @returns {Number}
    */
   get numberOfItems() {
@@ -1278,7 +1278,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * @returns {boolean} The specified display option for show shopping cart sum
+   * @returns {boolean} The specified display option for show winkelwagen sum
    */
   get showSum() {
     return this.trialTreatmentService.getDisplayOptions().showSum;
@@ -1306,7 +1306,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * returns if a popover shopping cart should be displayed
+   * returns if a popover winkelwagen should be displayed
    */
   get showPopOverCart() {
     // return true;
@@ -1373,7 +1373,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * OnClick listener for route to shopping cart button. 
+   * OnClick listener for route to winkelwagen button. 
    * Emits show back event, for displaying arrow back for navigation, 
    * 
    */
@@ -1427,11 +1427,11 @@ export class TrialComponent implements OnInit, AfterViewInit {
           &lt;button [matBadge]&#x3D;&quot;numberOfItems&quot; [matBadgeHidden]&#x3D;&quot;numberOfItems &lt; 1&quot; matBadgePosition&#x3D;&quot;before&quot;
             mat-stroked-button (click)&#x3D;&quot;routeShoppingCart()&quot;&gt;
             &lt;mat-icon&gt;shopping_cart&lt;/mat-icon&gt;
-            shopping cart
+            winkelwagen
           &lt;/button&gt;
           &lt;div class&#x3D;&quot;popover__content&quot;&gt;
             &lt;mat-toolbar color&#x3D;&quot;primary&quot; style&#x3D;&quot;height: 48px&quot;&gt;
-              &lt;span&gt;Ihr shopping cart&lt;/span&gt;
+              &lt;span&gt;Ihr winkelwagen&lt;/span&gt;
             &lt;/mat-toolbar&gt;
             &lt;div class&#x3D;&quot;container py-3&quot;&gt;
               &lt;app-shopping-cart host&#x3D;&quot;popover&quot;&gt;&lt;/app-shopping-cart&gt;
@@ -1796,7 +1796,7 @@ form.example button {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="wrapper" *ngIf="show; else error">  <div class="header">    <app-header></app-header>  </div>  <div class="info-bar">    <div class="search">      <!-- <div *ngIf="showBack"> -->      <button *ngIf="showBack" (click)="navBack()" class="btn-back" mat-icon-button>        <mat-icon>arrow_back</mat-icon>      </button>      <!-- </div> -->      <form [formGroup]="searchForm" class="example" (ngSubmit)="onSearch()">        <input [ngClass]="{\'test\': !showBack, \'test1\': showBack}" formControlName="search" matInput type="text"          placeholder="Search" autocomplete="off">        <span>          <button *ngIf="showSearchIcon" mat-icon-button type="submit">            <mat-icon [inline]="true">search</mat-icon>          </button>          <button *ngIf="!showSearchIcon" mat-icon-button type="button" (click)="cancelSearch()">            <mat-icon [inline]="true">close</mat-icon>          </button>        </span>      </form>    </div>    <div class="info" *ngIf="innerWidth > 520; else dropdown">      <div class="shopping-cart">        <div [ngClass]="{\'popover__wrapper\': showPopOverCart}">          <button [matBadge]="numberOfItems" [matBadgeHidden]="numberOfItems < 1" matBadgePosition="before"            mat-stroked-button (click)="routeShoppingCart()">            <mat-icon>shopping_cart</mat-icon>            shopping cart          </button>          <div class="popover__content">            <mat-toolbar color="primary" style="height: 48px">              <span>Ihr shopping cart</span>            </mat-toolbar>            <div class="container py-3">              <app-shopping-cart host="popover"></app-shopping-cart>            </div>          </div>        </div>        <div *ngIf="showSum" class="shopping-cart">          <div class="info">            Sum: {{sumCart | currency: currency}}          </div>        </div>        <div *ngIf="showBudget" class="shopping-cart budget">          <div [ngClass]="{\'info\':!showRemainder, \'b-expanded\':showRemainder}">            <div [ngClass]="{\'\':!showRemainder, \'test\':showRemainder}">              <span *ngIf="showRemainder">Remaining: {{remainder | currency: currency}}</span>              <span [ngClass]="{\'shrink\':showRemainder}">Budget: {{budget | currency: currency}}</span>            </div>          </div>        </div>      </div>    </div>  </div>  <div class="body">    <router-outlet></router-outlet>  </div></div><ng-template #error>  <div>    <div class="lds-spinner">      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>    </div>  </div></ng-template><ng-template #dropdown>  <button [matBadge]="numberOfItems" [matBadgeHidden]="numberOfItems < 1" matBadgePosition="before" mat-stroked-button    (click)="routeShoppingCart()">    <mat-icon>shopping_cart</mat-icon>  </button></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="wrapper" *ngIf="show; else error">  <div class="header">    <app-header></app-header>  </div>  <div class="info-bar">    <div class="search">      <!-- <div *ngIf="showBack"> -->      <button *ngIf="showBack" (click)="navBack()" class="btn-back" mat-icon-button>        <mat-icon>arrow_back</mat-icon>      </button>      <!-- </div> -->      <form [formGroup]="searchForm" class="example" (ngSubmit)="onSearch()">        <input [ngClass]="{\'test\': !showBack, \'test1\': showBack}" formControlName="search" matInput type="text"          placeholder="Search" autocomplete="off">        <span>          <button *ngIf="showSearchIcon" mat-icon-button type="submit">            <mat-icon [inline]="true">search</mat-icon>          </button>          <button *ngIf="!showSearchIcon" mat-icon-button type="button" (click)="cancelSearch()">            <mat-icon [inline]="true">close</mat-icon>          </button>        </span>      </form>    </div>    <div class="info" *ngIf="innerWidth > 520; else dropdown">      <div class="shopping-cart">        <div [ngClass]="{\'popover__wrapper\': showPopOverCart}">          <button [matBadge]="numberOfItems" [matBadgeHidden]="numberOfItems < 1" matBadgePosition="before"            mat-stroked-button (click)="routeShoppingCart()">            <mat-icon>shopping_cart</mat-icon>            winkelwagen          </button>          <div class="popover__content">            <mat-toolbar color="primary" style="height: 48px">              <span>Ihr winkelwagen</span>            </mat-toolbar>            <div class="container py-3">              <app-shopping-cart host="popover"></app-shopping-cart>            </div>          </div>        </div>        <div *ngIf="showSum" class="shopping-cart">          <div class="info">            Sum: {{sumCart | currency: currency}}          </div>        </div>        <div *ngIf="showBudget" class="shopping-cart budget">          <div [ngClass]="{\'info\':!showRemainder, \'b-expanded\':showRemainder}">            <div [ngClass]="{\'\':!showRemainder, \'test\':showRemainder}">              <span *ngIf="showRemainder">Remaining: {{remainder | currency: currency}}</span>              <span [ngClass]="{\'shrink\':showRemainder}">Budget: {{budget | currency: currency}}</span>            </div>          </div>        </div>      </div>    </div>  </div>  <div class="body">    <router-outlet></router-outlet>  </div></div><ng-template #error>  <div>    <div class="lds-spinner">      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>      <div></div>    </div>  </div></ng-template><ng-template #dropdown>  <button [matBadge]="numberOfItems" [matBadgeHidden]="numberOfItems < 1" matBadgePosition="before" mat-stroked-button    (click)="routeShoppingCart()">    <mat-icon>shopping_cart</mat-icon>  </button></ng-template></div>'
     var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AdminHeaderComponent', 'selector': 'app-admin-header'},{'name': 'AdminLandingComponent', 'selector': 'app-admin-landing'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EndTrialComponent', 'selector': 'app-end-trial'},{'name': 'FilterAllocateDialogComponent', 'selector': 'app-filter-allocate-dialog'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FoodCardComponent', 'selector': 'app-food-card'},{'name': 'FoodDetailsComponent', 'selector': 'app-food-details'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImageDialogComponent', 'selector': 'app-image-dialog'},{'name': 'InfoDialogComponent', 'selector': 'app-info-dialog'},{'name': 'ItemAllocateDialogComponent', 'selector': 'app-item-allocate-dialog'},{'name': 'ItemCreateComponent', 'selector': 'app-item-create'},{'name': 'ItemGridComponent', 'selector': 'app-item-grid'},{'name': 'ItemManageComponent', 'selector': 'app-item-manage'},{'name': 'LabelAllocateDialogComponent', 'selector': 'app-label-allocate-dialog'},{'name': 'LabelCreateComponent', 'selector': 'app-label-create'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ScoreCreateComponent', 'selector': 'app-score-create'},{'name': 'ShoppingCartComponent', 'selector': 'app-shopping-cart'},{'name': 'ShoppingMetricsComponent', 'selector': 'app-shopping-metrics'},{'name': 'SubjectManageComponent', 'selector': 'app-subject-manage'},{'name': 'SubjectSelectComponent', 'selector': 'app-subject-select'},{'name': 'SwapDialogComponent', 'selector': 'app-swap-dialog'},{'name': 'SwapOptDialogComponent', 'selector': 'app-swap-opt-dialog'},{'name': 'TaxCreateComponent', 'selector': 'app-tax-create'},{'name': 'TreatmentCreateComponent', 'selector': 'app-treatment-create'},{'name': 'TreatmentSelectComponent', 'selector': 'app-treatment-select'},{'name': 'TreeCreateComponent', 'selector': 'app-tree-create'},{'name': 'TreeManageComponent', 'selector': 'app-tree-manage'},{'name': 'TrialComponent', 'selector': 'app-trial'},{'name': 'TrialConfigComponent', 'selector': 'app-trial-config'},{'name': 'TrialLandingComponent', 'selector': 'app-trial-landing'},{'name': 'TrialShopComponent', 'selector': 'app-trial-shop'}];
     var DIRECTIVES = [{'name': 'FixedNavDirective', 'selector': '[appFixedNav]'},{'name': 'ScoreDirective', 'selector': '[appScore]'}];
     var ACTUAL_COMPONENT = {'name': 'TrialComponent'};
