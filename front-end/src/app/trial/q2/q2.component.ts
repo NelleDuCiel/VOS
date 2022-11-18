@@ -17,7 +17,7 @@ export class Q2Component implements OnInit {
   iqForm = this.fb.group({});
   iq = [
     {
-      text: 'Bitte bewerten Sie die die Verständlichkeit der im Shop bereitgestellten Produktinformationen. Die im Shop zur Verfügung gestellten Produktinformationen waren generell',
+      text: 'Bitte bewerten Sie die die Verständlichkeit der im Shop bereitgestellten productinformationen. Die im Shop zur Verfügung gestellten productinformationen waren generell',
       subconstruct: [
         {
           "text": "... eindeutig.",
@@ -58,7 +58,7 @@ export class Q2Component implements OnInit {
       ]
     },
     {
-      text: 'Mit Blick auf die Verlässlichkeit waren die Produktinformationen...',
+      text: 'Mit Blick auf die Verlässlichkeit waren die productinformationen...',
       subconstruct: [
         {
           "text": "... vertrauenswürdig.",
@@ -99,7 +99,7 @@ export class Q2Component implements OnInit {
       ]
     },
     {
-      text: 'Die Produktinformationen waren',
+      text: 'Die productinformationen waren',
       subconstruct: [
         {
           "text": "... informativ für meine Kaufentscheidung.",
@@ -196,7 +196,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, möglichst viele Produkte auf einen Blick sehen.",
+          "text": "... die Möglichkeit, möglichst viele producte auf einen Blick sehen.",
           "identifier": "ppsq.06.1",
           "value": null,
           scale: {
@@ -205,7 +205,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, verschiedene Produkte leicht miteinander vergleichen können.",
+          "text": "... die Möglichkeit, verschiedene producte leicht miteinander vergleichen können.",
           "identifier": "ppsq.06.2",
           "value": null,
           scale: {
@@ -214,7 +214,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... die Verfügbarkeit von mehreren Produktbilder und Anzeigeformate (z.B. Zoom).",
+          "text": "... die Verfügbarkeit von mehreren productbilder und Anzeigeformate (z.B. Zoom).",
           "identifier": "ppsq.06.3",
           "value": null,
           scale: {
@@ -264,7 +264,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... möglichst schnell zu den von mir präferierten Produkten zu gelangen.",
+          "text": "... möglichst schnell zu den von mir präferierten producten zu gelangen.",
           "identifier": "ppsq.10.1",
           "value": null,
           scale: {
@@ -273,7 +273,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... schnell und unkompliziert meinen shopping cart bearbeiten zu können (z.B. Produkte hinzufügen / entfernen).",
+          "text": "... schnell und unkompliziert meinen shopping cart bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
           "identifier": "ppsq.10.2",
           "value": null,
           scale: {
@@ -382,7 +382,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          text: 'Die Produktauswahl und der Preis des von mir zusammengestellten shopping carts entspricht weitestgehend meinem regulären Einkaufsverhalten.',
+          text: 'Die productauswahl und der Preis des von mir zusammengestellten shopping carts entspricht weitestgehend meinem regulären Einkaufsverhalten.',
           identifier: 'dmd.2',
           value: null, 
           scale: {
@@ -391,7 +391,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          text: 'Die Entscheidungen, die ich getroffen habe, spiegeln genau wieder, wie ich mich bei einem regulären Einkauf verhalten würde (z.B. Produktvergleiche).',
+          text: 'Die Entscheidungen, die ich getroffen habe, spiegeln genau wieder, wie ich mich bei einem regulären Einkauf verhalten würde (z.B. productvergleiche).',
           identifier: 'dmd.3',
           value: null, 
           scale: {
@@ -400,7 +400,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          text: 'Die Informationen (z.B. Produktvergleiche), die ich mir während meines Einkaufs eingeholt habe, spiegeln mein Verhalten bei einem regulären Einkauf wieder.',
+          text: 'Die Informationen (z.B. productvergleiche), die ich mir während meines Einkaufs eingeholt habe, spiegeln mein Verhalten bei einem regulären Einkauf wieder.',
           identifier: 'dmd.4',
           value: null, 
           scale: {

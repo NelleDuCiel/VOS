@@ -18,7 +18,7 @@ export class Q1Component implements OnInit {
   iqUnderstandibilityFQ: FormGroup = this.fb.group({});
   iq = [
     {
-      text: 'Mit Blick auf die Verständlichkeit, wie wichtig ist Ihnen, dass die Produktinformationen',
+      text: 'Mit Blick auf die Verständlichkeit, wie wichtig ist Ihnen, dass die productinformationen',
       subconstruct: [
         {
           "text": "... eindeutig sind.",
@@ -59,7 +59,7 @@ export class Q1Component implements OnInit {
       ]
     },
     {
-      text: 'Mit Blick auf die Verlässlichkeit, wie wichtig ist Ihnen, dass die Produktinformationen...',
+      text: 'Mit Blick auf die Verlässlichkeit, wie wichtig ist Ihnen, dass die productinformationen...',
       subconstruct: [
         {
           "text": "... vertrauenswürdig sind.",
@@ -100,7 +100,7 @@ export class Q1Component implements OnInit {
       ]
     },
     {
-      text: 'Mit Blick auf die Nützlichkeit, wie wichtig ist es Ihnen, dass die Produktinformationen',
+      text: 'Mit Blick auf die Nützlichkeit, wie wichtig ist es Ihnen, dass die productinformationen',
       subconstruct: [
         {
           "text": "... informativ für die Kaufentscheidung sind.",
@@ -197,7 +197,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, möglichst viele Produkte auf einen Blick sehen?",
+          "text": "... die Möglichkeit, möglichst viele producte auf einen Blick sehen?",
           "identifier": "expsq.06.1",
           "value": null,
           "scale": {
@@ -206,7 +206,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, verschiedene Produkte leicht miteinander vergleichen können?",
+          "text": "... die Möglichkeit, verschiedene producte leicht miteinander vergleichen können?",
           "identifier": "expsq.06.2",
           "value": null,
           "scale": {
@@ -215,7 +215,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... die Verfügbarkeit von mehreren Produktbilder und Anzeigeformate (z.B. Zoom).",
+          "text": "... die Verfügbarkeit von mehreren productbilder und Anzeigeformate (z.B. Zoom).",
           "identifier": "expsq.06.3",
           "value": null,
           "scale": {
@@ -265,7 +265,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... möglichst schnell zu den von Ihnen präferierten Produkten zu gelangen.",
+          "text": "... möglichst schnell zu den von Ihnen präferierten producten zu gelangen.",
           "identifier": "expsq.10.1",
           "value": null,
           "scale": {
@@ -274,7 +274,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... schnell und unkompliziert meinen shopping cart bearbeiten zu können (z.B. Produkte hinzufügen / entfernen).",
+          "text": "... schnell und unkompliziert meinen shopping cart bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
           "identifier": "expsq.10.2",
           "value": null,
           "scale": {
