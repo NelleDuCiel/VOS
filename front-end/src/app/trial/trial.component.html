@@ -27,11 +27,11 @@
           <button [matBadge]="numberOfItems" [matBadgeHidden]="numberOfItems < 1" matBadgePosition="before"
             mat-stroked-button (click)="routeShoppingCart()">
             <mat-icon>shopping_cart</mat-icon>
-            Warenkorb
+            shopping cart
           </button>
           <div class="popover__content">
             <mat-toolbar color="primary" style="height: 48px">
-              <span>Ihr Warenkorb</span>
+              <span>Ihr shopping cart</span>
             </mat-toolbar>
             <div class="container py-3">
               <app-shopping-cart host="popover"></app-shopping-cart>
