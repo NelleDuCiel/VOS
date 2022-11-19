@@ -11,23 +11,23 @@
     <div class="row justify-content-center">
       <div class="col-md-6 cont-width">
         <mat-form-field>
-          <input matInput formControlName="password" placeholder="Passwort" type="password" required>
+          <input matInput formControlName="password" placeholder="wachtwoord" type="password" required>
           <mat-error *ngIf="loginForm.get('password').hasError('required')">Pflichtfled</mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-6 cont-width">
-        <button mat-raised-button [disabled]="loginForm.invalid">Absenden</button>
+        <button mat-raised-button [disabled]="loginForm.invalid">inloggen</button>
       </div>
     </div>
   </form>
   <div *ngIf="showError" class="row justify-content-center mt-3">
     <div class="col-md-6">
-      <p>Benutzername bzw. Passwort falsch.</p>
-      <a (click)="resendUsername()" class="text-primary" sytle="cursor: pointer;">Benutzername vergessen?</a>
+      <p>username bzw. wachtwoord falsch.</p>
+      <a (click)="resendUsername()" class="text-primary" sytle="cursor: pointer;">username vergessen?</a>
       <br>
-      <a (click)="resetPwd()" class="text-primary" sytle="cursor: pointer;">Passwort vergessen?</a>
+      <a (click)="resetPwd()" class="text-primary" sytle="cursor: pointer;">wachtwoord vergessen?</a>
     </div>
   </div>
 </div>

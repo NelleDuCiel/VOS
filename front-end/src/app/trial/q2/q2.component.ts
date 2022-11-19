@@ -196,7 +196,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, möglichst viele producte auf einen Blick sehen.",
+          "text": "... die Möglichkeit, möglichst viele Productenauf einen Blick sehen.",
           "identifier": "ppsq.06.1",
           "value": null,
           scale: {
@@ -205,7 +205,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, verschiedene producte leicht miteinander vergleichen können.",
+          "text": "... die Möglichkeit, verschiedene Productenleicht miteinander vergleichen können.",
           "identifier": "ppsq.06.2",
           "value": null,
           scale: {
@@ -246,7 +246,7 @@ export class Q2Component implements OnInit {
       text: 'Die Navigation auf der Seite hat es ermöglicht',
       subconstruct: [
         {
-          "text": "... einfach und schnell zwischen den verschiedenen Seiten der Website hin- und zurück zu navigieren.",
+          "text": "... einfach und schnell zwischen den verschiedenen Seiten der Website hin- und Back zu navigieren.",
           "identifier": "ppsq.09",
           "value": null,
           scale: {
@@ -273,7 +273,7 @@ export class Q2Component implements OnInit {
           }
         },
         {
-          "text": "... schnell und unkompliziert meinen winkelwagen bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
+          "text": "... schnell und unkompliziert meinen winkelwagen bearbeiten zu können (z.B. Productenhinzufügen / entfernen).",
           "identifier": "ppsq.10.2",
           "value": null,
           scale: {
@@ -517,7 +517,7 @@ export class Q2Component implements OnInit {
   // sqNavigationFG: FormGroup = this.fb.group({});
   // sqNavigation = [
   //   {
-  //     "text": "einfach hin und zurück zu finden?",
+  //     "text": "einfach hin und Back zu finden?",
   //     "identifier": "ppsq.09",
   //     "value": null
   //   },
@@ -638,7 +638,7 @@ export class Q2Component implements OnInit {
   // discsqNavigationFG: FormGroup = this.fb.group({});
   // discsqNavigation = [
   //   {
-  //     "text": "die Einfachheit hin und zurück zu finden?",
+  //     "text": "die Einfachheit hin und Back zu finden?",
   //     "identifier": "discsq.09",
   //     "value": null
   //   },

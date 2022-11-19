@@ -388,7 +388,7 @@ num_pagination_not_mobile = sep['notMobile'].groupby(['subject']).count().iloc[:
 ## number of pagination mobile vs pc based on mean
 desc_num_pagination_mobile = num_pagination_mobile.describe()
 desc_num_pagination_not_mobile = num_pagination_not_mobile.describe()
-#### did people use the change items per page?
+#### did people use the change Producten per pagina?
 how_many_times_change_item_count_displayes_mobile = sep['mobile'].groupby(['subject']).nunique().loc[:, 'pageSize']
 how_many_times_change_item_count_displayes_not_mobile = sep['notMobile'].groupby(['subject']).nunique().loc[:, 'pageSize']
 desc_how_many_times_change_item_count_displayes_mobile = how_many_times_change_item_count_displayes_mobile.describe()

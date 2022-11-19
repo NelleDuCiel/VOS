@@ -197,7 +197,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, möglichst viele producte auf einen Blick sehen?",
+          "text": "... die Möglichkeit, möglichst viele Productenauf einen Blick sehen?",
           "identifier": "expsq.06.1",
           "value": null,
           "scale": {
@@ -206,7 +206,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... die Möglichkeit, verschiedene producte leicht miteinander vergleichen können?",
+          "text": "... die Möglichkeit, verschiedene Productenleicht miteinander vergleichen können?",
           "identifier": "expsq.06.2",
           "value": null,
           "scale": {
@@ -247,7 +247,7 @@ export class Q1Component implements OnInit {
       text: 'Mit Blick auf Navigationsmöglichkeiten im Shop, wie wichtige ist Ihnen',
       subconstruct: [
         {
-          "text": "... einfach und schnell zwischen den verschiedenen Seiten der Website hin- und zurück zu navigieren zu können.",
+          "text": "... einfach und schnell zwischen den verschiedenen Seiten der Website hin- und Back zu navigieren zu können.",
           "identifier": "expsq.09",
           "value": null,
           "scale": {
@@ -274,7 +274,7 @@ export class Q1Component implements OnInit {
           }
         },
         {
-          "text": "... schnell und unkompliziert meinen winkelwagen bearbeiten zu können (z.B. producte hinzufügen / entfernen).",
+          "text": "... schnell und unkompliziert meinen winkelwagen bearbeiten zu können (z.B. Productenhinzufügen / entfernen).",
           "identifier": "expsq.10.2",
           "value": null,
           "scale": {

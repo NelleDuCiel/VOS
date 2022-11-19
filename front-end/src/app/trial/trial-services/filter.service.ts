@@ -21,7 +21,7 @@ export class FilterService {
   filtered: EventEmitter<any> = new EventEmitter();
   /**Holds the currently selected filter for consistency during page changes. */
   selectedFilter: any;
-  /**Holds currentPage and items per page information, so that the paginator is not reset each time a page change happens. */
+  /**Holds currentPage and Producten per pagina information, so that the paginator is not reset each time a page change happens. */
   navInfo: any;
   /**
    * Eventemitter for category filter NOT USED.

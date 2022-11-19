@@ -2,7 +2,7 @@
   <div class="filter-bar">
     <span class="content item-filter">
       <mat-form-field>
-        <mat-label>Sortieren nach...</mat-label>
+        <mat-label>Rangschikken op...</mat-label>
         <mat-select (selectionChange)="sortingSelection($event)">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let opt of filterOptions" [value]="opt">{{opt}}</mat-option>
@@ -11,7 +11,7 @@
     </span>
     <div class="alert alert-info" style="display: table;" *ngIf="filtered | async">
       <!-- <span class="content" style="display: inherit;"> -->
-      <div class="filter-alert-text">producte gefiltert</div>
+      <div class="filter-alert-text">Productengefiltert</div>
       <mat-icon (click)="resetFilter()" class="filter-alert-icon">close</mat-icon>
       <!-- </span> -->
     </div>

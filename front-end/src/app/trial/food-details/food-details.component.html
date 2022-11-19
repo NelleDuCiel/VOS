@@ -60,7 +60,7 @@
         </div>
         <div class="call-to-action-price">
           {{(product.netPrice + displayAdditionalTaxInfo()) * (1 + product.vat) | currency: product.currency}}</div>
-        <div class="call-to-action-price tax">inkl. gesetzliche Mwst.</div>
+        <div class="call-to-action-price tax">incl. BTW</div>
         <div class="action-bar-wrapper">
           <div class="counter-div" style="border: 1px solid #ccc;">
             <button (click)="remove()" mat-button>
@@ -78,7 +78,7 @@
         </div>
         <button (click)="addToCart(product)" mat-raised-button style="width: 100%">
           <mat-icon>shopping_cart</mat-icon>
-          <span>In den winkelwagen</span>
+          <span>In de winkelwagen</span>
         </button>
       </div>
     </div>
@@ -99,13 +99,13 @@
   <div *ngIf="product.ingrediënten != null">
     <div class="row" style="width:100%; margin: 0">
       <div class="col">
-        <h5>Inhaltsstoffe:</h5>
+        <h5>Ingrediënten</h5>
         <p>{{product.ingrediënten}}</p>
       </div>
     </div>
   </div>
   <div *ngIf="product.allergens != null">
-    <h5>Allergene:</h5>
+    <h5>Allergenen:</h5>
     <p>{{product.allergens}}</p>
   </div>
   <div style="margin: 1rem 2rem">

@@ -28,7 +28,7 @@ export class ItemGridComponent implements OnInit {
   /**Holds items for display in item grid, also supports slices for pagination. */
   dataSource: any;
   /**Names of sorting options for use in dropdown selection of sorting options. */
-  filterOptions = ['Preis aufsteigend', 'Preis absteigend'];
+  filterOptions = ['Prijs oplopend', 'Prijs dalend'];
   /**Selection options for pagination. For dropdown seleciton of displayed products per page. */
   pageSizes = [5, 10, 20, 100];
   // show = false;
@@ -140,12 +140,12 @@ export class ItemGridComponent implements OnInit {
       this.iterator();
       return;
     }
-    if ($event.value == 'Preis aufsteigend') {
+    if ($event.value == 'Prijs oplopend') {
       this.dataSource.data.sort((a, b) => a.netPrice - b.netPrice);
       this.iterator();
       return;
     }
-    if ($event.value == 'Preis absteigend') {
+    if ($event.value == 'Prijs dalend') {
       this.dataSource.data.sort((a, b) => b.netPrice - a.netPrice);
       this.iterator();
       return;
