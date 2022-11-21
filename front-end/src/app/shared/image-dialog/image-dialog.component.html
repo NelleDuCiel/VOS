@@ -19,11 +19,11 @@
       <p>Es können nur Bilder unter {{environment.maxFileSize}} hochgeladen werden.</p>
     </div>
     <div class="mx-auto text-center" style="margin-bottom: 5px">
-      <label for="file" class="upload-btn">Bild Auswählen</label>
+      <label for="file" class="upload-btn">choose image</label>
     </div>
     <div *ngIf="showUpload" class="mx-auto text-center">
       <button class="upload-btn" mat-raised-button color="accent" (click)="upload(imgURL[0])">
-        Hochladen
+        upload
       </button>
     </div>
   </div>
