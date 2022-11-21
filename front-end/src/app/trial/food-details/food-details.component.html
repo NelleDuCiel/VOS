@@ -17,7 +17,7 @@
         <p>{{product.description[0].text}}</p>
       </div>
       <div *ngIf="showLabel">
-        <h3>Certification</h3>
+        <h3>Labels</h3>
         <div class="label-container">
           <div class="label" *ngFor="let l of product.label">
             <img (click)="showInfo(l)" [src]="environment.apiURI + '/image/label/' + l" alt="Label" height="75px">
