@@ -710,22 +710,22 @@ export class SubjectSelectComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;h3&gt;Einstellungen&lt;/h3&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;h3&gt;Instellingen&lt;/h3&gt;
 &lt;div style&#x3D;&quot;margin: 1em 0 1em 0&quot;&gt;
   &lt;form [formGroup]&#x3D;&quot;subjectForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
-    &lt;p&gt;Hier die Probanden ID eingeben, wenn das Subjekt den Test erneut durchführt.&lt;/p&gt;
+    &lt;p&gt;Welkom! Geef hier je persoonlijke ID code in, als je die hebt. Doe dit zeker als je de test al eerder startte, maar nog niet afwerkte!&lt;/p&gt;
     &lt;mat-form-field&gt;
       &lt;mat-label&gt;Subject ID&lt;/mat-label&gt;
       &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;subjectID&quot; required&gt;
       &lt;mat-error *ngIf&#x3D;&quot;subjectForm.controls.subjectID.errors?.trial&quot;&gt;Trial already started?&lt;/mat-error&gt;
     &lt;/mat-form-field&gt;
-    &lt;button [disabled]&#x3D;&quot;btnDisabled&quot; mat-raised-button&gt;Weiter&lt;/button&gt;
+    &lt;button [disabled]&#x3D;&quot;btnDisabled&quot; mat-raised-button&gt;doorgaan&lt;/button&gt;
   &lt;/form&gt;
 &lt;/div&gt;
 &lt;mat-divider&gt;&lt;/mat-divider&gt;
 &lt;div style&#x3D;&quot;margin: 1em 0 1em 0&quot;&gt;
-  &lt;p&gt;Hiermit wird ein neuer Proband angelegt.&lt;/p&gt;
-  &lt;button (click)&#x3D;&quot;generateSubject()&quot; mat-raised-button&gt;Neuen Probanten erstellen&lt;/button&gt;
+  &lt;p&gt;Ik heb nog geen ID. Maak een nieuwe aan.&lt;/p&gt;
+  &lt;button (click)&#x3D;&quot;generateSubject()&quot; mat-raised-button&gt;Maak een nieuw ID aan.&lt;/button&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -792,7 +792,7 @@ button {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h3>Einstellungen</h3><div style="margin: 1em 0 1em 0">  <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">    <p>Hier die Probanden ID eingeben, wenn das Subjekt den Test erneut durchführt.</p>    <mat-form-field>      <mat-label>Subject ID</mat-label>      <input matInput type="text" formControlName="subjectID" required>      <mat-error *ngIf="subjectForm.controls.subjectID.errors?.trial">Trial already started?</mat-error>    </mat-form-field>    <button [disabled]="btnDisabled" mat-raised-button>Weiter</button>  </form></div><mat-divider></mat-divider><div style="margin: 1em 0 1em 0">  <p>Hiermit wird ein neuer Proband angelegt.</p>  <button (click)="generateSubject()" mat-raised-button>Neuen Probanten erstellen</button></div></div>'
+        var COMPONENT_TEMPLATE = '<div><h3>Instellingen</h3><div style="margin: 1em 0 1em 0">  <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">    <p>Welkom! Geef hier je persoonlijke ID code in, als je die hebt. Doe dit zeker als je de test al eerder startte, maar nog niet afwerkte!</p>    <mat-form-field>      <mat-label>Subject ID</mat-label>      <input matInput type="text" formControlName="subjectID" required>      <mat-error *ngIf="subjectForm.controls.subjectID.errors?.trial">Trial already started?</mat-error>    </mat-form-field>    <button [disabled]="btnDisabled" mat-raised-button>doorgaan</button>  </form></div><mat-divider></mat-divider><div style="margin: 1em 0 1em 0">  <p>Ik heb nog geen ID. Maak een nieuwe aan.</p>  <button (click)="generateSubject()" mat-raised-button>Maak een nieuw ID aan.</button></div></div>'
     var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AdminHeaderComponent', 'selector': 'app-admin-header'},{'name': 'AdminLandingComponent', 'selector': 'app-admin-landing'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EndTrialComponent', 'selector': 'app-end-trial'},{'name': 'FilterAllocateDialogComponent', 'selector': 'app-filter-allocate-dialog'},{'name': 'FilterComponent', 'selector': 'app-filter'},{'name': 'FoodCardComponent', 'selector': 'app-food-card'},{'name': 'FoodDetailsComponent', 'selector': 'app-food-details'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImageDialogComponent', 'selector': 'app-image-dialog'},{'name': 'InfoDialogComponent', 'selector': 'app-info-dialog'},{'name': 'ItemAllocateDialogComponent', 'selector': 'app-item-allocate-dialog'},{'name': 'ItemCreateComponent', 'selector': 'app-item-create'},{'name': 'ItemGridComponent', 'selector': 'app-item-grid'},{'name': 'ItemManageComponent', 'selector': 'app-item-manage'},{'name': 'LabelAllocateDialogComponent', 'selector': 'app-label-allocate-dialog'},{'name': 'LabelCreateComponent', 'selector': 'app-label-create'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ScoreCreateComponent', 'selector': 'app-score-create'},{'name': 'ShoppingCartComponent', 'selector': 'app-shopping-cart'},{'name': 'ShoppingMetricsComponent', 'selector': 'app-shopping-metrics'},{'name': 'SubjectManageComponent', 'selector': 'app-subject-manage'},{'name': 'SubjectSelectComponent', 'selector': 'app-subject-select'},{'name': 'SwapDialogComponent', 'selector': 'app-swap-dialog'},{'name': 'SwapOptDialogComponent', 'selector': 'app-swap-opt-dialog'},{'name': 'TaxCreateComponent', 'selector': 'app-tax-create'},{'name': 'TreatmentCreateComponent', 'selector': 'app-treatment-create'},{'name': 'TreatmentSelectComponent', 'selector': 'app-treatment-select'},{'name': 'TreeCreateComponent', 'selector': 'app-tree-create'},{'name': 'TreeManageComponent', 'selector': 'app-tree-manage'},{'name': 'TrialComponent', 'selector': 'app-trial'},{'name': 'TrialConfigComponent', 'selector': 'app-trial-config'},{'name': 'TrialLandingComponent', 'selector': 'app-trial-landing'},{'name': 'TrialShopComponent', 'selector': 'app-trial-shop'}];
     var DIRECTIVES = [{'name': 'FixedNavDirective', 'selector': '[appFixedNav]'},{'name': 'ScoreDirective', 'selector': '[appScore]'}];
     var ACTUAL_COMPONENT = {'name': 'SubjectSelectComponent'};
