@@ -45,7 +45,7 @@ export class TrialConfigComponent implements OnInit {
   ) { }
 
   /**
-   * Checks if treatment id was already specified in URL, if not display app-treatment-select, 
+   * Checks if Nummer van het Experiment was already specified in URL, if not display app-treatment-select, 
    * if yes only display app-subject-select component.
    * 
    * If QueryString "genSubject=yes" is present Subject is automatically generated and redirected to questionnaire start.
@@ -89,7 +89,7 @@ export class TrialConfigComponent implements OnInit {
    * Routes to waiting screen where button is displayed for starting the trial.
    */
   async startTrial() {
-    // start trial with treatment id and subject id
+    // start trial with Nummer van het Experiment and subject id
     try{
       await this.trialTreatmentService.checkIfTreatmentActive(this.id).toPromise();
       let trial = await this.trialTreatmentService.startTreatment(this.id, this.subjectID, {deviceHeight: this.deviceHeight, deviceWidth: this.deviceWidth}).toPromise();

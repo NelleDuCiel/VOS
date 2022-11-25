@@ -341,7 +341,7 @@ With this the subject is automatically generated and the treatment is started. <
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Checks if treatment id was already specified in URL, if not display app-treatment-select, 
+                    <div class="io-description"><p>Checks if Nummer van het Experiment was already specified in URL, if not display app-treatment-select, 
 if yes only display app-subject-select component.</p>
 <p>If QueryString &quot;genSubject=yes&quot; is present Subject is automatically generated and redirected to questionnaire start.</p>
 </div>
@@ -882,7 +882,7 @@ export class TrialConfigComponent implements OnInit {
   ) { }
 
   /**
-   * Checks if treatment id was already specified in URL, if not display app-treatment-select, 
+   * Checks if Nummer van het Experiment was already specified in URL, if not display app-treatment-select, 
    * if yes only display app-subject-select component.
    * 
    * If QueryString &quot;genSubject&#x3D;yes&quot; is present Subject is automatically generated and redirected to questionnaire start.
@@ -932,7 +932,7 @@ export class TrialConfigComponent implements OnInit {
    * Routes to waiting screen where button is displayed for starting the trial.
    */
   async startTrial() {
-    // start trial with treatment id and subject id
+    // start trial with Nummer van het Experiment and subject id
     let trial &#x3D; await this.trialTreatmentService.startTreatment(this.id, this.subjectID, {deviceHeight: this.deviceHeight, deviceWidth: this.deviceWidth}).toPromise();
     console.log(this.activatedRoute.snapshot.queryParamMap.has(&#x27;quest&#x27;))
     if (this.activatedRoute.snapshot.queryParamMap.has(&#x27;quest&#x27;)) {

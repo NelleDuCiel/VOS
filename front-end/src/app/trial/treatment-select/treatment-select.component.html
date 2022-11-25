@@ -3,9 +3,9 @@
 <h3>Kies het juiste experiment</h3>
 <form [formGroup]="treatmentForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <mat-label>Treatment ID</mat-label>
+    <mat-label>Nummer van het Experiment</mat-label>
     <input matInput formControlName="treatment" type="text" required>
-    <mat-error *ngIf="treatmentForm.controls.treatment.errors?.notFound">Treatment ID nicht gefunden</mat-error>
+    <mat-error *ngIf="treatmentForm.controls.treatment.errors?.notFound">Nummer van het Experiment nicht gefunden</mat-error>
     <!-- <mat-select>
       <mat-option *ngFor="let t of treatments" [value]="t">{{t}}</mat-option>
     </mat-select> -->
