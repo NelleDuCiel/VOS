@@ -458,6 +458,7 @@ export class ItemCreateComponent implements OnInit {
         salt: this.itemFormObject.nutritionalTable.controls.salt.value,
       },
       netPrice: this.itemFormObject.data.controls.netPrice.value,
+      niceness: this.itemFormObject.data.controls.niceness.value,
       currency: this.itemFormObject.data.controls.currency.value,
       vat: this.itemFormObject.data.controls.vat.value,
       tax: {
