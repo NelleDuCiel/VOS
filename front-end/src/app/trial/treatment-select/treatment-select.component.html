@@ -5,12 +5,12 @@
   <mat-form-field>
     <mat-label>Nummer van het Experiment</mat-label>
     <input matInput formControlName="treatment" type="text" required>
-    <mat-error *ngIf="treatmentForm.controls.treatment.errors?.notFound">Nummer van het Experiment nicht gefunden</mat-error>
+    <mat-error *ngIf="treatmentForm.controls.treatment.errors?.notFound">Nummer van het Experiment niet gevonden</mat-error>
     <!-- <mat-select>
       <mat-option *ngFor="let t of treatments" [value]="t">{{t}}</mat-option>
     </mat-select> -->
   </mat-form-field>
-  <button mat-raised-button>Get</button>
+  <button mat-raised-button>Doorgaan</button>
 </form>
 <!-- </div>
 </div> -->
