@@ -11,7 +11,7 @@
       <!-- </div> -->
       <form [formGroup]="searchForm" class="example" (ngSubmit)="onSearch()">
         <input [ngClass]="{'test': !showBack, 'test1': showBack}" formControlName="search" matInput type="text"
-          placeholder="Search" autocomplete="off">
+          placeholder="Zoeken" autocomplete="off">
         <span>
           <div *ngIf="filtered | async; else close">
             <button mat-icon-button type="button" (click)="cancelSearch()">
@@ -40,13 +40,13 @@
         </div>
         <div *ngIf="showSum" class="shopping-cart">
           <div class="info">
-            Sum: {{sumCart | currency: currency}}
+            Totaal: {{sumCart | currency: currency}}
           </div>
         </div>
         <div *ngIf="showBudget" class="shopping-cart budget">
           <div [ngClass]="{'info':!showRemainder, 'b-expanded':showRemainder}">
             <div [ngClass]="{'':!showRemainder, 'test':showRemainder}">
-              <span *ngIf="showRemainder">Remaining: {{remainder | currency: currency}}</span>
+              <span *ngIf="showRemainder">Overig: {{remainder | currency: currency}}</span>
               <span [ngClass]="{'shrink':showRemainder}">Budget: {{budget | currency: currency}}</span>
             </div>
           </div>
@@ -87,6 +87,6 @@
 
 <ng-template #close>
   <button mat-icon-button type="submit">
-    <mat-icon [inline]="true">search</mat-icon>
+    <mat-icon [inline]="true">zoeken</mat-icon>
   </button>
 </ng-template>
