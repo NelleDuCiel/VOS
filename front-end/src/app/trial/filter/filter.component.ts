@@ -49,7 +49,7 @@ export class FilterComponent implements OnInit {
    */
   ngOnInit() {
     this.filterService.getFilterTrees().subscribe((val: any[]) => {
-      // val = val.concat([{name: 'Sort by Tags',tree: this.productService.getTreeOfTagsOfAllProducts()}]);
+      // val = val.concat([{name: 'Productcategorie',tree: this.productService.getTreeOfTagsOfAllProducts()}]);
       val.forEach((element, i) => {
         this.pushNodes(element);
         if (i == val.length - 1) {
@@ -57,7 +57,7 @@ export class FilterComponent implements OnInit {
         }
       });
     });
-    // sort by tags
+    // Productcategorie
     this.sortByTagsTree = this.productService.getTreeOfTagsOfAllProducts();
     if (this.sortByTagsTree.length > 0) {
       this.showTagFilter = true

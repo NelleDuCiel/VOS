@@ -144,7 +144,7 @@ for q in queries:
                 if 0 < len(attr.contents) < 2:
                     continue
                 else:
-                    item["ingrediënten"] = attr.contents[1]
+                    item["Ingredienten"] = attr.contents[1]
             # for content information { contentType: string (fluid, solid), amountInKG: number, displayAmount: string (g, kg) }
             # signifies if bio, etc... 
             if 'Eigenschaften' in attr.contents[0]:

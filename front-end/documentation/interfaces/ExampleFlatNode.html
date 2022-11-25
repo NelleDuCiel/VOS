@@ -248,7 +248,7 @@ export class FilterComponent implements OnInit {
    */
   ngOnInit() {
     this.filterService.getFilterTrees().subscribe((val: any[]) &#x3D;&gt; {
-      // val &#x3D; val.concat([{name: &#x27;Sort by Tags&#x27;,tree: this.productService.getTreeOfTagsOfAllProducts()}]);
+      // val &#x3D; val.concat([{name: &#x27;Productcategorie&#x27;,tree: this.productService.getTreeOfTagsOfAllProducts()}]);
       val.forEach((element, i) &#x3D;&gt; {
         console.log(element);
         this.pushNodes(element);
@@ -257,7 +257,7 @@ export class FilterComponent implements OnInit {
         }
       });
     });
-    // sort by tags
+    // Productcategorie
     this.sortByTagsTree &#x3D; this.productService.getTreeOfTagsOfAllProducts();
     if (this.sortByTagsTree.length &gt; 0) {
       this.showTagFilter &#x3D; true
