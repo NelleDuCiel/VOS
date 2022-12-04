@@ -50,9 +50,12 @@ export class AdminLandingComponent implements OnInit {
    * @param element 
    */
   deleteTreatment(element) {
-    this.treatementService.deleteSpecificTreatment(element._id).subscribe(() => {
-      this.fetchTreatements();
-    });
+	var result = confirm("Are you sure you want to delete the treatment?")
+		if(result){
+		  this.treatementService.deleteSpecificTreatment(element._id).subscribe(() => {
+		    this.fetchTreatements();
+		  });
+		}
   }
 
   /**

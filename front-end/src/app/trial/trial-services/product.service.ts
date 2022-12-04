@@ -151,18 +151,9 @@ export class ProductService {
       // build root:
       const refArray = [...branches];
       branches.forEach((element, index) => {
-        if (!element.parent) {
-          trees.push({ name: element.name, children: [] });
-          branches.splice(index, 1);
-        }
+        trees.push({ name: element.name, children: [] });
+        branches.splice(index, 1);
       });
-      branches.forEach((element, index) => {
-        const ind = trees.findIndex(x => x.name == element.parent)
-        if (ind != -1) {
-          trees[ind].children.push({ name: element.name, children: [] });
-          branches.splice(index, 1);
-        }
-      })
       return trees;
     }
   }

@@ -63,7 +63,7 @@
             <div class="col">
               <mat-form-field>
                 <mat-label>Ingredienten</mat-label>
-                <textarea matInput type="text" formControlName="Ingredienten"></textarea>
+                <textarea matInput type="text" formControlName="ingredients"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -325,7 +325,7 @@
                 <input matInput formControlName="amount" type="number">
               </mat-form-field>
             </form>
-            <button mat-raised-button (click)="saveScoers()">Add</button>
+            <button mat-raised-button (click)="saveScores()">Add</button>
           </div>
         </div>
         <div class="subform" *ngIf="treatmentEdit">

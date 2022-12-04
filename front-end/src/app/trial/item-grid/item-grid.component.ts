@@ -28,7 +28,7 @@ export class ItemGridComponent implements OnInit {
   /**Holds items for display in item grid, also supports slices for pagination. */
   dataSource: any;
   /**Names of sorting options for use in dropdown selection of sorting options. */
-  filterOptions = ['Prijs oplopend', 'Prijs dalend'];
+  filterOptions = ['Prijs oplopend', 'Prijs dalend', 'Nutri-Score dalend'];
   /**Selection options for pagination. For dropdown seleciton of displayed products per page. */
   pageSizes = [5, 10, 20, 100];
   // show = false;
@@ -150,6 +150,15 @@ export class ItemGridComponent implements OnInit {
       this.iterator();
       return;
     }
+   if ($event.value == 'Nutri-Score dalend') {
+		  this.dataSource.data.sort((a, b) => {
+        const scoreA = a.score.amount;
+        const scoreB = b.score.amount;
+        return scoreB - scoreA;
+      });
+		  this.iterator();
+		  return;
+    }   
   }
   /**
    * Function that handles the logic for reseting all filters applied.

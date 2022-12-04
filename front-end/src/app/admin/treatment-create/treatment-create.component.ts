@@ -87,8 +87,8 @@ export class TreatmentCreateComponent implements OnInit {
         }
       );
       this.treatmentService.refreshUI.subscribe(() => {
-        this.refresh();
-      });
+      this.refresh();
+    });
     }
   }
   /**
@@ -102,7 +102,7 @@ export class TreatmentCreateComponent implements OnInit {
           this.uploading = false;
           return;
         }
-        // this.router.navigate(['/admin/treatmentEdit/' + val._id]);
+        this.router.navigate(['/admin/treatmentEdit/' + val._id]);
       }
     );
   }
@@ -144,7 +144,7 @@ export class TreatmentCreateComponent implements OnInit {
       if (result) {
         this.treatmentService.addItemsToTreatment(this.newTreatment._id, result).subscribe(
           (val) => {
-            this.treatmentService.replaceTreatment(val);
+            this.treatmentService.replaceTreatment(this.newTreatment);
             this.treatmentService.emitRefreshUI();
           }
         );
@@ -198,15 +198,7 @@ export class TreatmentCreateComponent implements OnInit {
    * @ignore
    */
   onBack() {
-    if (!this.edited && this.newT) {
-      this.treatmentService.deleteSpecificTreatment(this.newTreatment._id).subscribe(
-        (val) => {
-          this.router.navigate(['/admin']);
-        }
-      );
-    } else {
       this.router.navigate(['/admin']);
-    }
   }
   /**
    * Function for refresh UI components.

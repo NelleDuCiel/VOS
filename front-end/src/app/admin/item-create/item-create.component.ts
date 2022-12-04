@@ -160,10 +160,8 @@ export class ItemCreateComponent implements OnInit {
           }
           // populate scores
           if (this.itemFormObject.score != undefined) {
-            if (this.itemFormObject.score.length > 0) {
-              this.scoreItems = this.itemFormObject.score;
+              this.scoreItems = [this.itemFormObject.score];
               this.showScore = true;
-            }
           }
         });
       })
@@ -424,7 +422,7 @@ export class ItemCreateComponent implements OnInit {
   /**
    * OnClick listener for saving scores to an item. 
    */
-  saveScoers() {
+  saveScores() {
     let ind = this.scores.findIndex(x => x._id == this.scoreForm.controls.scoreID.value);
     if (ind == -1) {
       return;
