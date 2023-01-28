@@ -1,0 +1,69 @@
+{
+    "nutritionalTable": {
+        "kj": 1658,
+        "kcal": 400,
+        "totalFat": 34,
+        "saturatedFat": 13,
+        "totalCarbohydrate": 3.1,
+        "sugar": 1.1,
+        "protein": 20,
+        "salt": 2.6
+    },
+    "content": {
+        "contentType": "solid",
+        "amountInKG": 0.15,
+        "displayAmount": "g"
+    },
+    "image": {
+        "full": "6377bfe81c00df0be16aff9f",
+        "th": "6377bfe81c00df0be16affa0"
+    },
+    "score": {
+        "scoreID": "6378e80f1c00df0be16b0492",
+        "amount": 5,
+        "header": "Nutri-Score",
+        "description": "Nutri-Score sorting",
+        "maxValue": 5,
+        "minValue": 1
+    },
+    "oldID": "6377bf711c00df0be16aff95",
+    "externalID": "",
+    "baseAttributes": [],
+    "swaps": [],
+    "label": [
+        "6378de481c00df0be16b0280"
+    ],
+    "tags": [],
+    "niceness": 0.2,
+    "_id": "6399c8551c00df0be16b1b47",
+    "name": "Pepersalami",
+    "brand": "Delhaize",
+    "description": [
+        {
+            "_id": "639c48b21c00df0be16b2655",
+            "header": "Benaming",
+            "text": "Salami met peperkorstje"
+        },
+        {
+            "_id": "639c48b21c00df0be16b2656",
+            "header": "Gebruiksaanwijzing",
+            "text": "In sneetjes voor op de boterham, bij een koud buffet of als aperitiefhapje"
+        },
+        {
+            "_id": "639c48b21c00df0be16b2657",
+            "header": "Aantal porties per verpakking",
+            "text": "5"
+        }
+    ],
+    "netPrice": 2.69,
+    "currency": "EUR",
+    "vat": 0,
+    "amount": 150,
+    "ingredients": "Varkensvlees, varkensvet, rundvlees, zwarte peper 2,5%, zout, MELKeiwit, peper, kaliumchloride, dextrose, kleurstoffen (rode biet, karmijn), antioxidanten (natriumascorbaat, extracten van rozemarijn), stabilisator (difosfaten), aroma, specerij, conserveermiddelen (natriumnitriet, kaliumnitraat), LACTOSE, fermenten, rook. 119 g varkensvlees en rundvlees wordt gebruikt voor 100 g product.",
+    "allergens": "Bevat: Melk\nBevat geen: Vis, Schaaldieren, Noten, Sesamzaad, Pindanoten, Zwaveldioxide of sulfieten, Selderij, Lupine, Gluten, Weekdieren, Eieren\nKan bevatten: Mosterd, Soja",
+    "taxes": [],
+    "owner": "egodden",
+    "createdAt": "2022-12-14T12:57:57.556Z",
+    "updatedAt": "2022-12-16T10:30:10.925Z",
+    "__v": 6
+}
