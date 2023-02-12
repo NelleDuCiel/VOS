@@ -111,7 +111,7 @@ module.exports = function (app) {
                 item.image.th = images[1]._id;
                 item.image.full = images[0]._id;
                 await item.save()
-                return res.send({msg: 'Image saved!', images})
+                return res.send({ msg: 'Image saved!', images })
               })
           })
       })
