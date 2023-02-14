@@ -1,6 +1,8 @@
 import pandas as pd
 import json
 import requests
+import glob
+import os
 
 url = "https://goddenvos01.uantwerpen.be"
 item = "/api/item"
@@ -13,7 +15,7 @@ httpHeader = {"Content-Type": "application/json"}
 items_file = "items.json"
 
 
-df = pd.read_excel("AllProducts_AF.xlsx")
+df = pd.read_excel("../../siteScraping/products/FullProductDatabase_Food-R.xlsx")  # adapt
 # print(df.columns)
 data = []
 
@@ -38,7 +40,9 @@ for c, row in df.iterrows():
     dic["nutritionalTable"]["saturatedFat"] = float(
         "".join(filter(lambda i: i.isdigit(), row["verzadigde vetten (g)"]))
     )
-    dic["nutritionalTable"]["salt"] = 0
+    dic["nutritionalTable"]["salt"] = float(
+        "".join(filter(lambda i: i.isdigit(), row["salt (g)"]))
+    )
     dic["nutritionalTable"]["sugar"] = float(
         "".join(filter(lambda i: i.isdigit(), row["suiker (g)"]))
     )
@@ -51,8 +55,8 @@ for c, row in df.iterrows():
     # CONTENT
     dic["content"] = {}
     dic["content"]["contentType"] = "solid"
-    dic["content"]["amountInKG"] = 0.1
-    dic["content"]["displayAmount"] = "g"
+    dic["content"]["amountInKG"] = 1  # check
+    dic["content"]["displayAmount"] = []
     # SCORE
     dic["score"] = {}
     dic["score"]["amount"] = ord(row["NutriScore"].lower()) - 96
@@ -63,7 +67,7 @@ for c, row in df.iterrows():
     dic["score"]["minValue"] = 1
     # OTHER
     dic["label"] = ["6378de481c00df0be16b0280"]
-    dic["niceness"] = 1
+    dic["niceness"] = row["NutriScore_value"]
     dic["name"] = row["description"]
     dic["brand"] = row["brand"]
     dic["description"] = []
@@ -79,15 +83,19 @@ for c, row in df.iterrows():
 
     data.append(dic)
 
+images_list =sorted(glob.glob("../../siteScraping/products/*/images/*.avif"))
+images_dict = {os.path.splitext(os.path.split(f)[1])[0]: f for f in images_list}
+
 for row in data:
     # upload each item
     try:
         resp = requests.post(
             f"{url}{item}", headers=httpHeader, cookies=cookies, json=row
         )
+        print(resp)
     except requests.exceptions.RequestException as e:
         print(e)
-    files = {"image": open(f'revositems/{row["externalID"]}.jpg', "rb")}
+    files = {"image": open(f'{images_dict[row["externalID"]]}.jpg', "rb")}  # revositems aanpassen naar map waar images staan
     try:
         respImage = requests.post(
             f"{url}{itemImage}",
@@ -95,6 +103,7 @@ for row in data:
             cookies=cookies,
             data={"itemID": f'{resp.json()["_id"]}'},
         )
+        print(respImage)
     except requests.exceptions.RequestException as e:
         print(e)
         break
