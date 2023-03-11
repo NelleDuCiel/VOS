@@ -125,38 +125,67 @@ export class ProductService {
    * Now only supports tag sorting generation two levels deep.
    * e.g.: ['Lebenmittel', 'Brot', 'Vollkorn'] only first two entries would be selectable and visible in filter component.
    */
-  getTreeOfTagsOfAllProducts() {
-    if (this.products) {
-      let mokData = [];
-      for (let p of this.products) {
-        if (p.tags.length > 0) {
-          mokData.push(p.tags);
-        }
-      }
-      let trees = [];
-      let branches = [];
-      for (let mok of mokData) {
-        for (let i = 0; i < mok.length; i++) {
-          let obj: any = { name: mok[i] }
-          if (i == 0) {
-            obj.parent = null;
-          } else {
-            obj.parent = mok[i - 1];
-          }
-          if (branches.findIndex(x => x.name == obj.name) == -1) {
-            branches.push(obj);
-          }
-        }
-      }
-      // build root:
-      const refArray = [...branches];
-      branches.forEach((element, index) => {
-        trees.push({ name: element.name, children: [] });
-        branches.splice(index, 1);
-      });
-      return trees;
-    }
+getTreeOfTagsOfAllProducts(): any[] {
+  // Check if products are not empty
+  if (!this.products) {
+    return [];
   }
+
+  // Get all tags from the products and filter out any products without tags
+  const mokData: string[][] = this.products
+    .filter(p => p.tags.length > 0)
+    .map(p => p.tags);
+
+  // Create an array to hold all branches (name and parent) from the tags
+  const branches: { name: string, parent: string | null }[] = [];
+  mokData.forEach(tags => {
+    for (let i = 0; i < tags.length; i++) {
+      // Create an object with the name of the current tag and its parent tag
+      const obj: { name: string, parent: string | null } = {
+        name: tags[i],
+        parent: i === 0 ? null : tags[i - 1]
+      };
+      // Check if the branch already exists in the array before pushing it
+      if (!branches.some(x => x.name === obj.name)) {
+        branches.push(obj);
+      }
+    }
+  });
+
+  // Sort the branches by name
+  branches.sort((a, b) => a.name.localeCompare(b.name));
+
+  // Create an array to hold all trees (name and children)
+  const trees: { name: string, children: any[] }[] = [];
+
+  // Build the root of each tree
+  branches.forEach(branch => {
+    // If the branch has no parent, it's a root
+    if (branch.parent === null) {
+      trees.push({
+        name: branch.name,
+        children: []
+      });
+    }
+  });
+
+  // Build the children for each tree
+  branches.forEach(branch => {
+    // If the branch has a parent, find its parent tree and add it as a child
+    if (branch.parent !== null) {
+      const parentTree = trees.find(tree => tree.name === branch.parent);
+      if (parentTree) {
+        parentTree.children.push({
+          name: branch.name,
+          children: []
+        });
+      }
+    }
+  });
+
+  return trees;
+}
+
 
   /**
    * Base Funtion: Limit selection based on baseAttributes of items / products.

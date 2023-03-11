@@ -26,7 +26,7 @@
           {{product.name}}
         </div>
       </div>
-      <div class="grammage" *ngIf="product.content">
+      <div class="grammage" *ngIf="product.content" style="display:none">
         {{displayContentAmount()}} {{product.content.displayAmount}} ({{conversionGrammagePrice()}})
       </div>
       <div class="mini-description-price" [ngClass]="{'additional-tax':product.taxes.length > 0 && showTax}">

@@ -17,14 +17,14 @@ export class SubjectSelectComponent implements OnInit {
   treatmentID: any;
   /**Form for selecting subject by ID. */
   subjectForm = new FormGroup({
-    subjectID: new FormControl('', Validators.required)
+    customID: new FormControl('', Validators.required)
   });
   /**Submit Button disabled switch. */
   btnDisabled = true;
   /**Databinding to parent for subjectID emission. */
   @Output() selected = new EventEmitter<string>();
   /**Databinding for recieving treatmentID from parent. */
-  @Input('tID') set tID(id) {
+  @Input('tID') set tID(id: string) {
     this.btnDisabled = false;
     this.treatmentID = id;
   }
@@ -42,23 +42,38 @@ export class SubjectSelectComponent implements OnInit {
   /**
    * OnClick Form submission.
    * Checks if subject and treatment --> subject select fails if not subjectID is emited to parent
-   * @emits subjectID
+   * @emits customID
    */
   onSubmit() {
-    this.trialSubjectService.checkDataRecording(this.treatmentID, this.subjectForm.controls.subjectID.value)
+    const customID = this.subjectForm.controls.customID.value;
+
+    if (!customID){
+      return;
+    }
+
+    this.trialSubjectService.checkDataRecording(this.treatmentID, customID)
       .subscribe(
-        (val) => {
+        () => {
           // already exists
-          this.subjectForm.controls.subjectID.setErrors({ trial: true })
+          this.selected.emit(customID)
         },
         (error) => {
           //
           if (error.error.noTrial) {
-            this.selected.emit(this.subjectForm.controls.subjectID.value)
-          }
+            this.trialSubjectService.generateCustomSubject(this.treatmentID, customID).subscribe(
+              (val: string) => {
+                console.log(val)
+                this.selected.emit(val);
+              },
+              (innerError: any) => {
+                console.error(innerError);
+              }
+            );
+          }  else{
           console.error(error);
         }
-      );
+      }
+    );
   }
   /**
    * OnClick listener for creating a subject.
@@ -73,4 +88,5 @@ export class SubjectSelectComponent implements OnInit {
       this.selected.emit(val);
     })
   }
+  
 }

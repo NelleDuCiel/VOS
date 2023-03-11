@@ -74,4 +74,15 @@ export class TrialSubjectService {
     // this.http.get()
     return this.http.post(environment.apiURI + '/subject/create/' + id, { name: 'N/A', reusable: false });
   }
+
+  /**
+   * Generates a one-of subject for starting a trial.
+   * @param {string} treatmentID treatmentID
+   * @param {string} customID customID
+   * @returns {Observable} subject Object
+   */
+  generateCustomSubject(treatmentID: string, customID: string) {
+    // this.http.get()
+    return this.http.post(environment.apiURI + '/subject/create/' + treatmentID, { name: 'N/A', reusable: false, customID: customID});
+  }
 }

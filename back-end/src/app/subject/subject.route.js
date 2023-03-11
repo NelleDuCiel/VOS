@@ -48,6 +48,7 @@ module.exports = function (app) {
         let resObj = req.body;
         resObj.owner = treatment.owner;
         let subject = new Subject(resObj);
+        console.log(resObj);
         try {
           const sub = await subject.save();
           return res.send(sub._id);
