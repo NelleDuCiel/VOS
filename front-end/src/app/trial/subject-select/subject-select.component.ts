@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { TrialSubjectService } from '../trial-services/trial-subject.service';
 
 /**
@@ -19,6 +19,7 @@ export class SubjectSelectComponent implements OnInit {
   subjectForm = new FormGroup({
     customID: new FormControl('', Validators.required)
   });
+  
   /**Submit Button disabled switch. */
   btnDisabled = true;
   /**Databinding to parent for subjectID emission. */
@@ -29,13 +30,17 @@ export class SubjectSelectComponent implements OnInit {
     this.treatmentID = id;
   }
 
-  constructor(private trialSubjectService: TrialSubjectService) { }
+  constructor(private trialSubjectService: TrialSubjectService, private formBuilder: FormBuilder) { }
   /**
    * Not really needed anymore because component is hidden while treatmentID is not selected
    */
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.treatmentID) {
       this.btnDisabled = true;
+      const queryParams = new URLSearchParams(window.location.search);
+      const customID_url = queryParams.get('id');
+
+      this.subjectForm = this.formBuilder.group({customID: [customID_url, Validators.required]})
       // this.subjectForm.invalid;
     }
   }
