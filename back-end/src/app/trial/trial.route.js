@@ -480,10 +480,20 @@ module.exports = function (app) {
       })
     }
   )
-
+  app.get(
+    '/subjectbycustom/:customid',
+    verifySession,
+    (req, res) => {
+      Subject.findOne({customID: req.params.customid}, {_id: 1}, (err, subject) => {
+        res.send(subject._id.toString());
+      })
+    }
+  )
   app.get('/allCurrentCarts', verifySession, (req, res) => {
     Cart.find({}, (err, carts) => {
       res.send(carts);
     })
   })
 }
+
+// 

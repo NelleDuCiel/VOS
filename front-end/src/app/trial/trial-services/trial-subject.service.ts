@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class TrialSubjectService {
   /**SubjectID of current subject performing test. */
   id: any;
+  cid: string;
   /**Switch for determining if the data generated should be recorded (saved to database). */
   recording: boolean = false;
 
@@ -28,6 +29,26 @@ export class TrialSubjectService {
   setSubjectID(id) {
     this.id = id;
     sessionStorage.setItem('subjectID', id);
+  }
+
+  /**
+   * Sets subjectID in memory and in session store.
+   * @param {string} cid 
+   */
+  setCustomID(cid) {
+    this.cid = cid;
+    sessionStorage.setItem('customID', cid);
+  }
+  /**
+   * Checks if cid is in memory if not returns id from session storage.
+   * @returns {string} subjectID
+   */
+  getCustomID(): string {
+    if (!this.cid) {
+      // error Custom reference lost or not provided? get from route
+      this.setCustomID(sessionStorage.getItem('customID'));
+    }
+    return this.cid;
   }
 
   /**

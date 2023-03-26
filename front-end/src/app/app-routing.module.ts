@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LandingComponent } from './landing/landing.component';
 import { InactiveComponent } from './inactive/inactive.component';
-import { TrialConfigComponent } from './trial/trial-config/trial-config.component';
+import { TrialConfigComponent, CustomTrialConfigComponent } from './trial/trial-config/trial-config.component';
+// import {  } from './trial/trial-config/custom-trial-config.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'inactive', component: InactiveComponent },
   { path: 'admin', component: InactiveComponent },
   { path: 't/:treatmentID', component: TrialConfigComponent },
+  { path: 't/startnewtreatment', component: CustomTrialConfigComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

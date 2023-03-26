@@ -1,0 +1,36 @@
+<header>
+  <h1>Welkom bij de virtuele supermarkt van de UAntwerpen!</h1>
+</header>
+
+<main>
+    <section class="c">
+      <p>
+        Gelieve op de "Start Experiment" knop te drukken om verder te gaan!
+      </p>
+      <div *ngIf="tid && sid">
+          <mat-label>Treatment ID:</mat-label><input type="text" [value]="tid" [disabled]="tid !== 0" #tidInput>
+          <br>
+          <mat-label>Subject ID:</mat-label><input type="text" [value]="sid" [disabled]="sid !== 0" #sidInput>
+          <br>
+          <button (click)="startCustomTrial()" [disabled]="trialStarted">Start Experiment</button>
+      </div>
+    </section>
+</main>
+
+<!-- <div style="padding: 15px">
+  <div class="c" style="text-align: center"> -->
+    <!-- <h3>Kies het juiste experiment</h3>
+    <form [formGroup]="treatmentForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Nummer van het Experiment</mat-label>
+        <input matInput formControlName="treatment" type="text" required>
+        <mat-error *ngIf="treatmentForm.controls.treatment.errors?.notFound">Nummer van het Experiment niet gevonden</mat-error>
+         <mat-select>
+          <mat-option *ngFor="let t of treatments" [value]="t">{{t}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button>Doorgaan</button> -->
+    <!-- </form> -->
+    <!-- </div>
+    </div> -->
+    

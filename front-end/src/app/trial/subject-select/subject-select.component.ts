@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { TrialSubjectService } from '../trial-services/trial-subject.service';
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * Subject select comoponent
@@ -30,19 +31,24 @@ export class SubjectSelectComponent implements OnInit {
     this.treatmentID = id;
   }
 
-  constructor(private trialSubjectService: TrialSubjectService, private formBuilder: FormBuilder) { }
+  constructor(private trialSubjectService: TrialSubjectService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
   /**
    * Not really needed anymore because component is hidden while treatmentID is not selected
    */
-  ngOnInit(): void {
-    if (!this.treatmentID) {
+  ngOnInit() {
+    
       this.btnDisabled = true;
-      const queryParams = new URLSearchParams(window.location.search);
-      const customID_url = queryParams.get('id');
 
-      this.subjectForm = this.formBuilder.group({customID: [customID_url, Validators.required]})
+      this.subjectForm = this.formBuilder.group({customID: ['', Validators.required]})
+      this.route.queryParams.subscribe(params => {
+        const idValue = decodeURIComponent(params['id']);
+        console.log(idValue);
+        this.subjectForm.patchValue({
+          customID: idValue
+        });
+        this.btnDisabled = false;
+      });
       // this.subjectForm.invalid;
-    }
   }
   /**
    * OnClick Form submission.
