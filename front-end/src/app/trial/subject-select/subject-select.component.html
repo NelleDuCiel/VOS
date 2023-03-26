@@ -7,6 +7,7 @@
       <input matInput type="text" formControlName="customID" required>
       <!--<mat-error *ngIf="subjectForm.controls.customID.errors?.trial">Trial reeds gestart?</mat-error>-->
     </mat-form-field>
+    <div *ngIf="errorMessage" style="color: red">{{ errorMessage }}</div>
     <button [disabled]="btnDisabled" mat-raised-button>Doorgaan</button>
   </form>
 </div>

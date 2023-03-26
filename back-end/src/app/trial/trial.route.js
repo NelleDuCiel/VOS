@@ -480,15 +480,19 @@ module.exports = function (app) {
       })
     }
   )
-  app.get(
-    '/subjectbycustom/:customid',
-    verifySession,
-    (req, res) => {
-      Subject.findOne({customID: req.params.customid}, {_id: 1}, (err, subject) => {
-        res.send(subject._id.toString());
-      })
-    }
-  )
+  app.get('/subjectbycustom/:customid', (req, res) => {
+    Subject.findOne({ customID: req.params.customid }, { _id: 1 }, (err, subject) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Internal server error');
+      }
+      if (!subject) {
+        return res.send(null);
+      }
+      res.json({ _id: subject._id.toString() });
+    });
+  })
+
   app.get('/allCurrentCarts', verifySession, (req, res) => {
     Cart.find({}, (err, carts) => {
       res.send(carts);
