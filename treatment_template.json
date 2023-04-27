@@ -1,0 +1,68 @@
+{
+    "showOptions": {
+        "numOfItems": 20,
+        "showSum": true,
+        "showSumScore": false,
+        "showBudget": false,
+        "showScore": false,
+        "showTax": false,
+        "showPopOverCart": false
+    },
+    "swapConfig": {
+        "showSwaps": false,
+        "showSwapEnd": false,
+        "showOptInStart": false,
+        "showOptInEachTime": false
+    },
+    "subjectOptions": {
+        "money": 50,
+        "restricted": true
+    },
+    "active": true,
+    "featuredItems": [],
+    "questionnaire": false,
+    "name": "Pilot study",
+    "description": "Used as a pilot study",
+    "items": [],
+    "filters": [
+        {
+            "oldID": "6378e0901c00df0be16b0365",
+            "tree": [
+                {
+                    "name": "Nutri-Score A",
+                    "items": [],
+                    "children": []
+                },
+                {
+                    "name": "Nutri-Score B",
+                    "items": [],
+                    "children": []
+                },
+                {
+                    "name": "Nutri-Score C",
+                    "items": [],
+                    "children": []
+                },
+                {
+                    "name": "Nutri-Score D",
+                    "items": [],
+                    "children": []
+                },
+                {
+                    "name": "Nutri-Score E",
+                    "items": [],
+                    "children": []
+                },
+                {
+                    "name": "Nutri-Score F",
+                    "items": [],
+                    "children": []
+                }
+            ],
+            "name": "Nutri-Score",
+            "description": "Nutri-Score A,B,C,D and E"
+        }
+    ],
+    "owner": "egodden",
+    "__v": 0
+}

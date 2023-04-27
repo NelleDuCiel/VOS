@@ -13,7 +13,6 @@ cookies = {  # Get session via browser debugger > Network > Cookies
     "express:sess": "eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjM3OGFjNDIxYzAwZGYwYmUxNmIwMjM1In19",
 }
 httpHeader = {"Content-Type": "application/json"}
-items_file = "items.json"
 
 
 # df = pd.read_excel("../../siteScraping/products/FullProductDatabase_Food-R.xlsx")
@@ -43,35 +42,35 @@ for c, row in df.iterrows():
     dic["externalID"] = row["id"]
     # Nutritional Table
     dic["nutritionalTable"] = {}
-    if "kj" in df.columns:
+    if "kj" in df.columns and row["kj"] is not None:
         dic["nutritionalTable"]["kj"] = row["kj"]
     else:
         dic["nutritionalTable"]["kj"] = 0
-    if "kcal" in df.columns:
+    if "kcal" in df.columns and row["kcal"] is not None:
         dic["nutritionalTable"]["kcal"] = row["kcal"]
     else:
         dic["nutritionalTable"]["kcal"] = 0
-    if "vet" in df.columns:
+    if "vet" in df.columns and row["vet"] is not None:
         dic["nutritionalTable"]["totalFat"] = row["vet"]
     else:
         dic["nutritionalTable"]["totalFat"] = 0
-    if "koolhydraten" in df.columns:
+    if "koolhydraten" in df.columns and row["koolhydraten"] is not None:
         dic["nutritionalTable"]["totalCarbohydrate"] = row["koolhydraten"]
     else:
         dic["nutritionalTable"]["totalCarbohydrate"] = 0
-    if "verzadigdeVetten" in df.columns:
+    if "verzadigdeVetten" in df.columns and row["verzadigdeVetten"] is not None:
         dic["nutritionalTable"]["saturatedFat"] = row["verzadigdeVetten"]
     else:
         dic["nutritionalTable"]["saturatedFat"] = 0
-    if "zout" in df.columns:
+    if "zout" in df.columns and row["zout"] is not None:
         dic["nutritionalTable"]["salt"] = row["zout"]
     else:
         dic["nutritionalTable"]["salt"] = 0
-    if "suiker" in df.columns:
+    if "suiker" in df.columns and row["suiker"] is not None:
         dic["nutritionalTable"]["sugar"] = row["suiker"]
     else:
         dic["nutritionalTable"]["sugar"] = 0
-    if "eiwitten" in df.columns:
+    if "eiwitten" in df.columns and row["eiwitten"] is not None:
         dic["nutritionalTable"]["protein"] = row["eiwitten"]
     else:
         dic["nutritionalTable"]["protein"] = 0
@@ -112,22 +111,12 @@ for c, row in df.iterrows():
     dic["taxes"] = []
     dic["owner"] = "egodden"
     dic["__v"] = 1
-    taglist = []
-    if "subbrand" in df.columns:
-        if len(row["subbrand"]) > 0:
-            taglist.append(row["subbrand"].strip())
-    if "name" in df.columns:
-        if len(row["name"]) > 0:
-            taglist.append(row["name"].strip())
-    if "nameElke" in df.columns:
-        if len(row["nameElke"]) > 0:
-            taglist.append(row["nameElke"].strip())
-    dic["tags"] = taglist
+    dic["tags"] = row["name"].strip()
 
     data.append(dic)
 
-# images_list = sorted(glob.glob("../../siteScraping/products/*/images/*.avif"))
-# images_dict = {os.path.splitext(os.path.split(f)[1])0: f for f in images_list}
+images_list = sorted(glob.glob("../../siteScraping/products/*/images/*"))
+images_dict = {os.path.split(f)[1]: f for f in images_list}
 
 for row in data:
     # upload each item
@@ -138,18 +127,17 @@ for row in data:
         print(resp)
     except requests.exceptions.RequestException as e:
         print(e)
-    # files = {
-    #     "image": open(f'{images_dict[row["externalID"]]}.jpg', "rb")
-    # }  # revositems aanpassen naar map waar images staan
-    # try:
-    #     respImage = requests.post(
-    #         f"{url}{itemImage}",
-    #         files=files,
-    #         cookies=cookies,
-    #         data={"itemID": f'{resp.json()["_id"]}'},
-    #     )
-    #     print(respImage)
-    # except requests.exceptions.RequestException as e:
-    #     print(e)
-    #     break
-# if successfully created
+    files = {
+        "image": open(f'{images_dict[row["externalID"]]}', "rb")
+    }  # revositems aanpassen naar map waar images staan
+    try:
+        respImage = requests.post(
+            f"{url}{itemImage}",
+            files=files,
+            cookies=cookies,
+            data={"itemID": f'{resp.json()["_id"]}'},
+        )
+        print(respImage)
+    except requests.exceptions.RequestException as e:
+        print(e)
+        break

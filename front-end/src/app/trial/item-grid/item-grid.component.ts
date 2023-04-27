@@ -109,7 +109,7 @@ export class ItemGridComponent implements OnInit {
     for (let i of part) {
       ids.push(i._id);
     }
-    this.eventsService.paginationEvent({ currentPage: this.currentPage, pageSize: this.pageSize, itemsOnPage: ids, numInTotal: this.dataSource.data.length })
+    this.eventsService.paginationEvent({currentPage: this.currentPage, pageSize: this.pageSize, itemsOnPage: ids, numInTotal: this.dataSource.data.length})
   }
   /**
    * Page event listener of the mat-paginator tag.
@@ -150,15 +150,15 @@ export class ItemGridComponent implements OnInit {
       this.iterator();
       return;
     }
-    if ($event.value == 'Nutri-Score') {
-      this.dataSource.data.sort((a, b) => {
+   if ($event.value == 'Nutri-Score') {
+		  this.dataSource.data.sort((a, b) => {
         const scoreA = a.score.amount;
         const scoreB = b.score.amount;
         return scoreA - scoreB;
       });
-      this.iterator();
-      return;
-    }
+		  this.iterator();
+		  return;
+    }   
   }
   /**
    * Function that handles the logic for reseting all filters applied.
