@@ -40,35 +40,35 @@
       </div>
     </div>
   </a>
+
+  <div style="flex: 1; text-align: center;">
+    <button (click)="addToCart()" cmat-mini-fab aria-label="Example icon-button with a heart icon" style="border: none;">
+      <img src="cart-text.png" alt="shopping cart icon" height="50" width="150" height="50", width="150">
+    </button>
+  </div>
   <!-- quick actions -->
   <div class="action-bar-wrapper">
-    <div class="action-bar-inner">
-      <!-- <div class="action-bar-items"> -->
-      <!-- <button mat-mini-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button> -->
-      <div class="rotate">
-        <div *ngIf="showScore && product.score != undefined" class="score-bar-background">
-          <div appScore [score]="calculateScore()"></div>
-        </div>
+
+    <div style="display: flex; align-items: center; border: 1px solid #ccc;">
+      <div style="flex: 1; text-align: center;">
+        <span>Aantal:</span>
       </div>
-      <div style="display:flex; border: 1px solid #ccc;">
-        <button (click)="remove()" mat-button>
-          <mat-icon>remove</mat-icon>
-        </button>
-        <div class="counter">
+      <div class="counter" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <div style="display: flex; align-items: center;">
+          <button (click)="remove()" mat-button>
+            <mat-icon>remove</mat-icon>
+          </button>
           <span class="number">
             {{counter}}
           </span>
+          <button (click)="add()" mat-button color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
         </div>
-        <button (click)="add()" mat-button color="primary">
-          <mat-icon>add</mat-icon>
-        </button>
       </div>
-      <button (click)="addToCart()" color="primary" mat-mini-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
-      <!-- </div> -->
     </div>
+    
+    
+    
   </div>
 </div>

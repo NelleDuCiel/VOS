@@ -188,7 +188,7 @@ export class TrialComponent implements OnInit, AfterViewInit {
     // this.showSearchIcon = false;
     this.filterService.filterItems(this.searchForm.controls.search.value, 'notFilterTree')
     // when not on products page navigate there?
-    if (!this.router.routerState.snapshot.url.includes('products')) {
+    if (this.router.routerState.snapshot.url.includes('products')) {
       this.router.navigate(['products'], { relativeTo: this.activatedRoute })
     };
   }
