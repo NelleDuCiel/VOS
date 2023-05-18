@@ -108,7 +108,7 @@ export class FilterComponent implements OnInit {
    * @param node 
    */
   filter(node) {
-    //this.deselectPreviousNode()
+    this.deselectPreviousNode()
     node.selected = true;
     this.selectedNode = node;
     this.filterService.categoryFilter(node.name);
@@ -118,7 +118,7 @@ export class FilterComponent implements OnInit {
    * @param node 
    */
   baseItemFilter(node) {
-    //this.deselectPreviousNode();
+    this.deselectPreviousNode();
     node.selected = true;
     this.selectedNode = node;
     if (!node.items) {
