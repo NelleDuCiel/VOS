@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TrialTreatmentService } from '../trial-services/trial-treatment.service';
 import { TrialSubjectService } from '../trial-services/trial-subject.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
+/*  */
 /**
  * Trial Config Component
  * 
@@ -122,3 +125,66 @@ export class TrialConfigComponent implements OnInit {
     this.showSubjectSelect = true;
   }
 }
+
+@Component({
+  selector: 'app-treatment',
+  templateUrl: './custom-trial-config.component.html',
+  styleUrls: ['./custom-trial-config.component.scss']
+})
+export class CustomTrialConfigComponent implements OnInit {
+
+  tid: string;
+  sid: string;
+  trialStarted = true;
+  deviceHeight: number;
+  deviceWidth: number;
+  subjectID: string;
+  treatmentID: string;
+
+  constructor(private http: HttpClient, 
+  private activatedRoute: ActivatedRoute,
+  private trialTreatmentService: TrialTreatmentService,
+  private trialSubjectService: TrialSubjectService,
+  private route: ActivatedRoute,
+  private router: Router) { }
+
+  ngOnInit() {this.route.queryParams.subscribe(params => {
+    this.tid = params['tid'];
+    this.sid = params['sid'];
+    // this.subjectID = '';
+    this.deviceWidth = window.innerWidth; 
+    this.deviceHeight = window.innerHeight;
+    this.trialStarted = !this.tid || !this.sid;
+  });
+    }
+
+  startCustomTrial() {
+    this.http.post(environment.apiURI + '/subject/create/' + this.tid, { name: 'N/A', reusable: false, customID: this.sid}).subscribe((response) => {
+      console.log(response);
+    }, (error) => {
+      console.error(error);
+    });
+    this.startTrial()
+  }
+
+  async startTrial() {
+    // start trial with Nummer van het Experiment and subject id
+    this.http.get<string>(environment.apiURI + '/subjectbycustom/' + this.sid).subscribe((value) => {
+      this.subjectID = value;
+    });
+    const treatmentID = this.tid;
+    console.log(this.subjectID);
+    try{
+      await this.trialTreatmentService.checkIfTreatmentActive(treatmentID).toPromise();
+      let trial = await this.trialTreatmentService.startTreatment(treatmentID, this.subjectID, {deviceHeight: this.deviceHeight, deviceWidth: this.deviceWidth}).toPromise();
+      if (this.route.snapshot.queryParamMap.has('quest')) {
+        this.router.navigate([`/t/${treatmentID}/s/${this.subjectID}/q1`]);
+      } else {
+        this.router.navigate(['/t/' + treatmentID + '/s/' + this.subjectID + '/shop/products']);
+      }
+    } catch (error) {
+      console.error(error);
+      this.router.navigate(['/inactive']);
+    }
+  }
+} 

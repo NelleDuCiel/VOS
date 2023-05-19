@@ -30,7 +30,8 @@ import { SubjectSelectComponent } from './subject-select/subject-select.componen
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TreatmentSelectComponent } from './treatment-select/treatment-select.component';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
-import { TrialConfigComponent } from './trial-config/trial-config.component';
+import { TrialConfigComponent, CustomTrialConfigComponent} from './trial-config/trial-config.component';
+// import {  } from './trial/trial-config/custom-trial-config.component';
 // import { HeaderComponent } from '../shared/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { FilterService } from './trial-services/filter.service';
@@ -60,6 +61,7 @@ import { AlternateBgColorDirective } from './alternate-bg-color.directive';
     SubjectSelectComponent,
     TreatmentSelectComponent,
     TrialConfigComponent,
+    CustomTrialConfigComponent,
     TrialLandingComponent,
     TrialShopComponent,
     ShoppingMetricsComponent,

@@ -15,7 +15,7 @@ import { TrialSubjectService } from '../trial-services/trial-subject.service';
 export class StartTrialComponent implements OnInit {
 
   treatmentID = this.activatedRoute.snapshot.params.treatmentID;
-  subjectID = this.activatedRoute.snapshot.params.subjectID;
+  customID = this.activatedRoute.snapshot.params.subjectID;
 
   showFinished = false;
 
@@ -28,13 +28,13 @@ export class StartTrialComponent implements OnInit {
   }
 
   startTrial() {
-    this.http.post(environment.apiURI + '/start/trial/' + this.treatmentID + '/' + this.subjectID, {}).subscribe(
+    this.http.post(environment.apiURI + '/start/trial/' + this.treatmentID + '/' + this.customID, {}).subscribe(
       (trial: any) => {
         if(trial.finished) {
           this.showFinished = true;
         }
         this.trialSubject.recording = true;
-        this.router.navigate(['/t/' + this.treatmentID + '/s/' + this.subjectID + '/shop/products']);
+        this.router.navigate(['/t/' + this.treatmentID + '/s/' + this.customID + '/shop/products']);
       },
       (error) => { console.error(error) }
     )

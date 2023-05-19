@@ -161,6 +161,8 @@ export class EventsService {
    * @returns {Observable}
    */
   endTrial() {
+
+    console.log("here2")
     const subjectID = sessionStorage.getItem('subjectID');
     const treatmentID = sessionStorage.getItem('treatmentID');
     const treatmentAndSubjectURL = treatmentID + '/' + subjectID;

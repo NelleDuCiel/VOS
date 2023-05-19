@@ -90,7 +90,8 @@ export class ItemGridComponent implements OnInit {
     this.currentPage = 0;
     this.showGrid = false;
     this.dataSource = new MatTableDataSource<Element>();
-    this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
+    //this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
+    this.products.sort(); // sort alphabetically
     this.dataSource.data = [...this.products];
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.length = this.dataSource.data.length;
@@ -136,7 +137,7 @@ export class ItemGridComponent implements OnInit {
     const filter = { filter: !$event.value ? 'reset' : $event.value, type: 'sorting' }
     this.eventsService.recordSorting(filter);
     if (!$event.value) {
-      this.dataSource.data = this.products;
+      this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
       this.iterator();
       return;
     }

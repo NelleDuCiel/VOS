@@ -1,17 +1,18 @@
 <h3>Instellingen</h3>
 <div style="margin: 1em 0 1em 0">
   <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
-    <p>Welkom! Geef hier je persoonlijke ID code in, als je die hebt. Doe dit zeker als je de test al eerder startte, maar nog niet afwerkte!</p>
+    <p>Welkom! Geef hier je persoonlijke ID code in! Kies er een die je kan onthouden; je hebt deze zodadelijk opnieuw nodig.</p>
     <mat-form-field>
       <mat-label>Subject ID</mat-label>
-      <input matInput type="text" formControlName="subjectID" required>
-      <mat-error *ngIf="subjectForm.controls.subjectID.errors?.trial">Trial already started?</mat-error>
+      <input matInput type="text" formControlName="customID" required>
+      <!--<mat-error *ngIf="subjectForm.controls.customID.errors?.trial">Trial reeds gestart?</mat-error>-->
     </mat-form-field>
-    <button [disabled]="btnDisabled" mat-raised-button>doorgaan</button>
+    <div *ngIf="errorMessage" style="color: red">{{ errorMessage }}</div>
+    <button [disabled]="btnDisabled" mat-raised-button>Doorgaan</button>
   </form>
 </div>
 <mat-divider></mat-divider>
-<div style="margin: 1em 0 1em 0">
+<div style="margin: 1em 0 1em 0;display:none">
   <p>Ik heb nog geen ID. Maak een nieuwe aan.</p>
   <button (click)="generateSubject()" mat-raised-button>Maak een nieuw ID aan.</button>
 </div>

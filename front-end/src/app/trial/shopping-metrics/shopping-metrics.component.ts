@@ -73,6 +73,7 @@ export class ShoppingMetricsComponent implements OnInit {
    * Now implemented to redirect to questionnaire part 2.
    */
   async endTrial() {
+    console.log("here1")
     const { showSwapEnd, showOptInEachTime, showOptInStart } = this.trialTreatmentService.getSwapConfig();
     const items = [...this.items];
     if (showSwapEnd) {
