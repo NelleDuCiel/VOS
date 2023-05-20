@@ -51,25 +51,36 @@ export class ItemGridComponent implements OnInit {
    * 
    */
   ngOnInit() {
+    this.filterService.allSelectedFilter = [];
     if (this.filterService._getNavInfo() == undefined) { this.filterService._setNavInfo({ pageSize: this.pageSize, currentPage: this.currentPage }) }
     else {
       const navInfo = this.filterService._getNavInfo();
       console.log(navInfo);
       this.currentPage = navInfo.currentPage;
       this.pageSize = navInfo.pageSize;
+      console.log("Products here 2");
     }
     if (!this.filterService.selectedFilter) {
+      this.productService.filteredItems = [];
+
+      console.log("Products here 1");
       this.productService.getAllProducts().pipe(take(1)).subscribe((res: any) => {
         this.products = res;
         this.lengthProducts = this.products.length;
         this.setUp();
       })
     } else {
+      this.productService.filteredItems = [];
+      this.filterService.allSelectedFilter.forEach(selectedFilter => {
       this.products = this.productService.getItemsBasedOnFilter(this.filterService.selectedFilter.filter, this.filterService.selectedFilter.type);
+      });
       this.setUp()
     }
+
     this.filterService.filtered.subscribe((val) => {
-      this.products = this.productService.getItemsBasedOnFilter(val.filter, val.type);
+      val.forEach(selectedFilter => {
+      this.products = this.productService.getItemsBasedOnFilter(selectedFilter.filter, selectedFilter.type);
+      });
       this.setUp();
     });
     this.filterService.resetFilter.subscribe(() => {
@@ -90,8 +101,9 @@ export class ItemGridComponent implements OnInit {
     this.currentPage = 0;
     this.showGrid = false;
     this.dataSource = new MatTableDataSource<Element>();
-    //this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
-    this.products.sort(); // sort alphabetically
+    // Default sorting
+    this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
+    // this.products.sort(); // sort alphabetically
     this.dataSource.data = [...this.products];
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.length = this.dataSource.data.length;
@@ -168,7 +180,7 @@ export class ItemGridComponent implements OnInit {
   resetFilter() {
     const filter = { filter: 'reset', type: 'general' }
     // this.eventsService.recordSorting(filter);
-    this.productService.filteredItems = undefined;
+    this.productService.filteredItems = [];
     this.filterService.resetFilterEmit();
   }
 

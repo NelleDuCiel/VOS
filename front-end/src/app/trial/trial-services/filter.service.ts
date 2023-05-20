@@ -35,6 +35,7 @@ export class FilterService {
    * BehaviorSubject rxjs, emits if items in shop are filtered for displaying reset button
    */
   itemsFiltered: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  allSelectedFilter: any;
 
   constructor(private http: HttpClient) { }
 
@@ -73,11 +74,13 @@ export class FilterService {
   filterItems(filter, type) {
     this.itemsFiltered.next(true);
     this.selectedFilter = { filter, type };
+    this.allSelectedFilter.push(this.selectedFilter);
     if (type == 'notFilterTree') {
       let searchString = filter.toLowerCase().split(' ');
       this.selectedFilter = { filter: searchString, type };
+      this.allSelectedFilter.push(this.selectedFilter);
     }
-    this.filtered.emit(this.selectedFilter);
+    this.filtered.emit(this.allSelectedFilter);
   }
 
   // not in use ... 
@@ -88,7 +91,8 @@ export class FilterService {
   categoryFilter(filter) {
     this.itemsFiltered.next(true);
     this.selectedFilter = { filter, type: 'tagFilter' }
-    this.filtered.emit(this.selectedFilter);
+    this.allSelectedFilter.push(this.selectedFilter);
+    this.filtered.emit(this.allSelectedFilter);
   }
 
   /**
@@ -97,6 +101,7 @@ export class FilterService {
   resetFilterEmit() {
     this.itemsFiltered.next(false);
     this.selectedFilter = null;
+    this.allSelectedFilter = [];
     this.resetFilter.emit(true);
   }
 

@@ -78,31 +78,32 @@ export class ProductService {
    * @returns {Array} of items representing a subset of all products matching filter. 
    */
   getItemsBasedOnFilter(filter: any, type) {
+    //this.filteredItems = [];
+    if (type == 'tagFilter') {
+    this.products.forEach((item) => {
+      if (item.tags.includes(filter)) {
+        this.filteredItems.push(item);
+      }
+    })
+  } 
     if (type == 'filterTree') {
-      this.filteredItems = [];
+      // this.filteredItems = [];
       filter.forEach(filterItem => {
         this.filteredItems.push(
           // checks for old IDs and the product ids ... maybe sometimes items twice or included that should not be
           this.products.filter(x => (x._id == filterItem || x.oldID == filterItem || x.externalID == filterItem))[0]
         );
       });
-    } else if (type == 'tagFilter') {
-      this.filteredItems = [];
-      this.products.forEach((item) => {
-        if (item.tags.includes(filter)) {
-          this.filteredItems.push(item);
-        }
-      })
     } else if (type == 'limitSelection') {
       this.subSelection = [];
-      if (!this.filteredItems) { this.filteredItems = [...this.products] }
+      if (this.filteredItems < 1) { this.filteredItems = [...this.products] }
       this.filteredItems.forEach(element => {
         if (element.baseAttributes != null && element.baseAttributes.some(val => filter.includes(val))) {
           this.subSelection.push(element);
         }
       });
       return this.subSelection;
-    } else {
+    } else if (type != 'tagFilter') {
       // free text search filter
       this.filteredItems = [];
       this.products.forEach((item) => {

@@ -95,8 +95,9 @@ export class TrialComponent implements OnInit, AfterViewInit {
       // this.showSearchIcon = true;
       this.eventsService.recordFilterEvents({ filter: 'reset', type: 'general' });
     })
-    this.filterService.filtered.subscribe((filter) => {
-      this.eventsService.recordFilterEvents(filter);
+    this.filterService.filtered.subscribe((filters) => {
+      filters.forEach(filter => {
+      this.eventsService.recordFilterEvents(filter); });
     })
   }
 
