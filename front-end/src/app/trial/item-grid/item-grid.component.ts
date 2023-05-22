@@ -38,6 +38,7 @@ export class ItemGridComponent implements OnInit {
   pageSize = this.trialTreatmentService.getDisplayOptions().numOfItems;
   /**Holds reference to the current page. */
   currentPage = 0;
+  commonList: any = [];
 
   constructor(
     private productService: ProductService,
@@ -51,25 +52,54 @@ export class ItemGridComponent implements OnInit {
    * 
    */
   ngOnInit() {
+    this.filterService.allSelectedFilter = [];
+    this.products = [];
     if (this.filterService._getNavInfo() == undefined) { this.filterService._setNavInfo({ pageSize: this.pageSize, currentPage: this.currentPage }) }
     else {
       const navInfo = this.filterService._getNavInfo();
-      console.log(navInfo);
+      // console.log(navInfo);
       this.currentPage = navInfo.currentPage;
       this.pageSize = navInfo.pageSize;
     }
     if (!this.filterService.selectedFilter) {
+      this.productService.filteredItems = [];
+
       this.productService.getAllProducts().pipe(take(1)).subscribe((res: any) => {
         this.products = res;
         this.lengthProducts = this.products.length;
         this.setUp();
       })
     } else {
+      this.productService.filteredItems = [];
+      this.filterService.allSelectedFilter.forEach(selectedFilter => {
       this.products = this.productService.getItemsBasedOnFilter(this.filterService.selectedFilter.filter, this.filterService.selectedFilter.type);
+      });
       this.setUp()
     }
+
+    this.productService.getAllProducts().pipe(take(1)).subscribe((res: any) => {
+      this.products = res;
+      this.lengthProducts = this.products.length;
+    });
     this.filterService.filtered.subscribe((val) => {
-      this.products = this.productService.getItemsBasedOnFilter(val.filter, val.type);
+      this.commonList = [];
+      val.forEach(selectedFilter => {
+        console.log(selectedFilter);
+      const newProducts = this.productService.getItemsBasedOnFilter(selectedFilter.filter, selectedFilter.type);
+      console.log(newProducts);
+      this.commonList.push(...newProducts);
+      console.log(this.commonList);
+      });
+      if (this.commonList.length > 1 && val.length > 1) {
+      const filteredList = this.commonList.filter((obj, index, self) => {
+        return self.filter(innerObj => innerObj._id === obj._id).length > 1;
+      });
+
+      this.products = filteredList;
+    }
+      else {
+        this.products = this.commonList;
+      }
       this.setUp();
     });
     this.filterService.resetFilter.subscribe(() => {
@@ -90,7 +120,9 @@ export class ItemGridComponent implements OnInit {
     this.currentPage = 0;
     this.showGrid = false;
     this.dataSource = new MatTableDataSource<Element>();
-    this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
+    // Default sorting
+    // this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
+    this.products.sort(); // sort alphabetically
     this.dataSource.data = [...this.products];
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.length = this.dataSource.data.length;
@@ -136,7 +168,7 @@ export class ItemGridComponent implements OnInit {
     const filter = { filter: !$event.value ? 'reset' : $event.value, type: 'sorting' }
     this.eventsService.recordSorting(filter);
     if (!$event.value) {
-      this.dataSource.data = this.products;
+      this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
       this.iterator();
       return;
     }
@@ -167,7 +199,7 @@ export class ItemGridComponent implements OnInit {
   resetFilter() {
     const filter = { filter: 'reset', type: 'general' }
     // this.eventsService.recordSorting(filter);
-    this.productService.filteredItems = undefined;
+    this.productService.filteredItems = [];
     this.filterService.resetFilterEmit();
   }
 

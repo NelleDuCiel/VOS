@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { TrialSubjectService } from '../trial-services/trial-subject.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
 
 /**
  * Subject select comoponent
@@ -17,48 +21,98 @@ export class SubjectSelectComponent implements OnInit {
   treatmentID: any;
   /**Form for selecting subject by ID. */
   subjectForm = new FormGroup({
-    subjectID: new FormControl('', Validators.required)
+    customID: new FormControl('', Validators.required)
   });
+  
   /**Submit Button disabled switch. */
   btnDisabled = true;
+  errorMessage: string;
   /**Databinding to parent for subjectID emission. */
   @Output() selected = new EventEmitter<string>();
   /**Databinding for recieving treatmentID from parent. */
-  @Input('tID') set tID(id) {
+  @Input('tID') set tID(id: string) {
     this.btnDisabled = false;
     this.treatmentID = id;
   }
 
-  constructor(private trialSubjectService: TrialSubjectService) { }
+  constructor(private trialSubjectService: TrialSubjectService, private formBuilder: FormBuilder, private route: ActivatedRoute,
+    private http: HttpClient) { }
   /**
    * Not really needed anymore because component is hidden while treatmentID is not selected
    */
   ngOnInit() {
-    if (!this.treatmentID) {
+    
       this.btnDisabled = true;
+
+      this.subjectForm = this.formBuilder.group({customID: ['', Validators.required]})
+      this.route.queryParams.subscribe(params => {
+        const idValue = decodeURIComponent(params['id']);
+        console.log(idValue);
+        this.subjectForm.patchValue({
+          customID: idValue
+        });
+        this.btnDisabled = false;
+
+        // Automatically submit the form if the id parameter is present
+      this.errorMessage = ''; // Clear any previous error message
+      // Check if the form is valid
+      if (this.subjectForm.valid) {
+        // Make the API call to check if the custom ID already exists
+        const customID = this.subjectForm.get('customID').value;
+        this.http.get<string>(environment.apiURI + '/subjectbycustom/' + customID).subscribe(
+          response => {
+            if (response) {
+              // If the custom ID already exists, show an error message
+              this.errorMessage = `U heeft uw ID "${customID}" reeds ingegeven, indien dit incorrect is, gelieve elke.godden@uantwerpen.be te contacteren.`;
+            } else {
+              this.onSubmit();
+            }
+          },
+          error => {
+              // Handle any other errors that occur during the API call
+              console.error('API call failed:', error);
+              this.errorMessage = 'Er gebeurde een fout tijdens het ophalen van je sessie, gelieve later opnieuw te proberen.';
+            }
+        );
+        }
+      });
       // this.subjectForm.invalid;
-    }
   }
   /**
    * OnClick Form submission.
    * Checks if subject and treatment --> subject select fails if not subjectID is emited to parent
-   * @emits subjectID
+   * @emits customID
    */
   onSubmit() {
-    this.trialSubjectService.checkDataRecording(this.treatmentID, this.subjectForm.controls.subjectID.value)
+    const customID = this.subjectForm.controls.customID.value;
+
+    if (!customID){
+      return;
+    }
+
+    this.trialSubjectService.checkDataRecording(this.treatmentID, customID)
       .subscribe(
-        (val) => {
+        () => {
           // already exists
-          this.subjectForm.controls.subjectID.setErrors({ trial: true })
+          this.selected.emit(customID)
         },
         (error) => {
           //
           if (error.error.noTrial) {
-            this.selected.emit(this.subjectForm.controls.subjectID.value)
-          }
+            this.trialSubjectService.generateCustomSubject(this.treatmentID, customID).subscribe(
+              (val: string) => {
+                console.log(val)
+                this.selected.emit(val);
+              },
+              (innerError: any) => {
+                console.error(innerError);
+              }
+            );
+          }  else{
           console.error(error);
         }
-      );
+      }
+    );
   }
   /**
    * OnClick listener for creating a subject.
@@ -73,4 +127,5 @@ export class SubjectSelectComponent implements OnInit {
       this.selected.emit(val);
     })
   }
+  
 }

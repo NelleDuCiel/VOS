@@ -4,7 +4,8 @@ let Schema = mongoose.Schema;
 let SubjectSchema = new Schema({
   name: String, 
   reusable: Boolean,
-  owner: String
+  owner: String,
+  customID: String,
 }, { timestamps: true });
 
 

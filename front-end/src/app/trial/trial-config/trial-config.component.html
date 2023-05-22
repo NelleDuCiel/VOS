@@ -1,22 +1,52 @@
-<div *ngIf="show">
-  <div class="container">
-    <div class="row justify-content-center pt-4">
-      <div *ngIf="showSelectForm" class="col-md-6 cont-width">
-        <app-treatment-select (treatmentID)="setUpTreatment($event)"></app-treatment-select>
+<div *ngIf="show" class="container">
+  <div class="row">
+    <h1 class="mb-3">Welkom bij de Virtuele Supermart</h1>
+    <div class="col">
+      <p>Dit is jouw shopping lijstje vandaag. Let op: dit scherm verdwijnt van zodra je het experiment opstart, dus zorg dat je het lijstje ergens opslaat of de e-mail in de buurt houdt. Na het shoppen zal je doorgestuurd worden naar een korte vragenlijst.</p>
+      <p>Stel je voor dat je je wekelijkse boodschappen online doet. Je moet wat etenswaren kopen voor het ontbijt en een paar non-foodproducten. Verder nodig je drie vrienden uit en heb je besloten om samen pizza te maken. Je koopt de ingrediënten voor de pizza en wat snacks (chips). Je volledige boodschappenlijstje vind je hieronder. Selecteer de ingrediënten voor 4 personen (jouw 3 vrienden en jezelf), zo realistisch mogelijk.</p>
+      <h3>Non-food:</h3>
+      <ul>
+        <li>Vloeibaar afwasmiddel</li>
+      </ul>
+      <h3>Ontbijt:</h3>
+      <ul>
+        <li>Granola</li>
+        <li>Yoghurt</li>
+        <li>Appelsiensap</li>
+        <li>Fruit</li>
+      </ul>
+      <h3>Vriendenavond:</h3>
+      <ul>
+        <li>Chips</li>
+        <li>Twee kaarsen</li>
+        <li>Servetten / Keukenrol</li>
+        <li>Pizza bodem</li>
+        <li>Tomatensaus</li>
+        <li>Vlees</li>
+        <li>Kaas</li>
+        <li>Ananas</li>
+        <li>Water</li>
+        <li>Wijn</li>
+        <li>Basilicum</li>
+      </ul>
+      <p>Tip: als je zometeen verder gaat en je komt in een lege supermarkt terecht, refresh dan gewoon de pagina. Dit zou het probleem moeten oplossen.</p>
+    </div>
+  </div>
+  <div class="row justify-content-center pt-4">
+    <div *ngIf="showSelectForm" class="col-md-6 cont-width">
+      <app-treatment-select (treatmentID)="setUpTreatment($event)"></app-treatment-select>
+    </div>
+  </div>
+  <div class="row justify-content-center pt-4">
+    <div class="col-md-6 cont-width">
+      <div *ngIf="showSubjectSelect">
+        <app-subject-select [tID]="id" (selected)="selected($event)"></app-subject-select>
       </div>
     </div>
-    <div class="row justify-content-center pt-4">
-      <div class="col-md-6 cont-width">
-        <div *ngIf="showSubjectSelect">
-          <app-subject-select [tID]="id" (selected)="selected($event)"></app-subject-select>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center pt-4">
-      <div class="col-md-6 cont-width">
-        <button [disabled]="id == null || subjectID == null" style="width:100%" mat-raised-button (click)="startTrial()">Test Starten</button>
-        <!-- <app-subject-select (selected)="selected($event)"></app-subject-select> -->
-      </div>
+  </div>
+  <div class="row justify-content-center pt-4">
+    <div class="col-md-6 cont-width">
+      <button [disabled]="id == null || subjectID == null" style="width:100%" mat-raised-button (click)="startTrial()">Test Starten</button>
     </div>
   </div>
 </div>

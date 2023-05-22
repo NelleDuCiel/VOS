@@ -480,10 +480,36 @@ module.exports = function (app) {
       })
     }
   )
-
+  app.get('/subjectbycustom/:customid', (req, res) => {
+    Subject.findOne({ customID: req.params.customid }, { _id: 1 }, (err, subject) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Internal server error');
+      }
+      if (!subject) {
+        return res.send(null);
+      }
+      res.json({ _id: subject._id.toString() });
+    });
+  })
+  app.get('/custombysubject/:sid', (req, res) => {
+    const sid = mongoose.Types.ObjectId(req.params.sid);
+    Subject.findOne({ _id: sid }, { customID: 1 }, (err, custom) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Internal server error');
+      }
+      if (!custom) {
+        return res.send(null);
+      }
+      res.json({ customID: custom.customID });
+    });
+  })
   app.get('/allCurrentCarts', verifySession, (req, res) => {
     Cart.find({}, (err, carts) => {
       res.send(carts);
     })
   })
 }
+
+// 
