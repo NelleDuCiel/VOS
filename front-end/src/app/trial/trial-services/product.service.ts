@@ -86,23 +86,24 @@ export class ProductService {
           this.products.filter(x => (x._id == filterItem || x.oldID == filterItem || x.externalID == filterItem))[0]
         );
       });
-    } else if (type == 'tagFilter') {
-      this.filteredItems = [];
-      this.products.forEach((item) => {
-        if (item.tags.includes(filter)) {
-          this.filteredItems.push(item);
-        }
-      })
     } else if (type == 'limitSelection') {
       this.subSelection = [];
-      if (!this.filteredItems) { this.filteredItems = [...this.products] }
+      if (this.filteredItems < 1) { this.filteredItems = [...this.products] }
       this.filteredItems.forEach(element => {
         if (element.baseAttributes != null && element.baseAttributes.some(val => filter.includes(val))) {
           this.subSelection.push(element);
         }
       });
       return this.subSelection;
-    } else {
+    } 
+   else if (type == 'tagFilter') {
+    this.filteredItems = [];
+    this.products.forEach((item) => {
+      if (item.tags.includes(filter)) {
+        this.filteredItems.push(item);
+      }
+    })
+  } else {
       // free text search filter
       this.filteredItems = [];
       this.products.forEach((item) => {
