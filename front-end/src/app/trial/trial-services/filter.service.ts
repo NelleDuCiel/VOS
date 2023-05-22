@@ -73,11 +73,12 @@ export class FilterService {
    */
   filterItems(filter, type) {
     this.itemsFiltered.next(true);
-    this.selectedFilter = { filter, type };
-    this.allSelectedFilter.push(this.selectedFilter);
     if (type == 'notFilterTree') {
       let searchString = filter.toLowerCase().split(' ');
       this.selectedFilter = { filter: searchString, type };
+      this.allSelectedFilter.push(this.selectedFilter);
+    } else {
+      this.selectedFilter = { filter, type };
       this.allSelectedFilter.push(this.selectedFilter);
     }
     this.filtered.emit(this.allSelectedFilter);

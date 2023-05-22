@@ -78,16 +78,8 @@ export class ProductService {
    * @returns {Array} of items representing a subset of all products matching filter. 
    */
   getItemsBasedOnFilter(filter: any, type) {
-    //this.filteredItems = [];
-    if (type == 'tagFilter') {
-    this.products.forEach((item) => {
-      if (item.tags.includes(filter)) {
-        this.filteredItems.push(item);
-      }
-    })
-  } 
     if (type == 'filterTree') {
-      // this.filteredItems = [];
+      this.filteredItems = [];
       filter.forEach(filterItem => {
         this.filteredItems.push(
           // checks for old IDs and the product ids ... maybe sometimes items twice or included that should not be
@@ -103,7 +95,15 @@ export class ProductService {
         }
       });
       return this.subSelection;
-    } else if (type != 'tagFilter') {
+    } 
+   else if (type == 'tagFilter') {
+    this.filteredItems = [];
+    this.products.forEach((item) => {
+      if (item.tags.includes(filter)) {
+        this.filteredItems.push(item);
+      }
+    })
+  } else {
       // free text search filter
       this.filteredItems = [];
       this.products.forEach((item) => {
