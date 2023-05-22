@@ -16,8 +16,10 @@ httpHeader = {"Content-Type": "application/json"}
 
 
 # df = pd.read_excel("../../siteScraping/products/FullProductDatabase_Food-R.xlsx")
-df1 = pd.read_excel("../FullProductDatabase_Food-R.xlsx").iloc[np.arange(30) * 10]
-df2 = pd.read_excel("../FullProductDatabase_nonFood-R.xlsx").iloc[np.arange(10) * 10]
+df1 = pd.read_excel("../FullProductDatabase_Food-R.xlsx")  # .iloc[np.arange(30) * 10]
+df2 = pd.read_excel(
+    "../FullProductDatabase_nonFood-R.xlsx"
+)  # .iloc[np.arange(10) * 10]
 
 # df = pd.concat([df.iloc[np.arange(10) * 10], df2.iloc[np.arange(10) * 10]])
 # print(df.columns)
@@ -30,7 +32,14 @@ nsdict = {
     "E": "6378de481c00df0be16b0280",
     "F": "63ee092cb4b8ac09c7639115",
 }
-
+nsdict2 = {
+    "A": "Nutri-Score A",
+    "B": "Nutri-Score B",
+    "C": "Nutri-Score C",
+    "D": "Nutri-Score D",
+    "E": "Nutri-Score E",
+    "F": "No Nutri-Score",
+}
 # CONSTRUCT JSON Template
 """
 Hier vind je alle velden van je Excel en van de JSON. De velden van je Excel zijn row[<veldnaam>], die van de JSON zijn

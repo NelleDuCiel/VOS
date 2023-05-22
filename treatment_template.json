@@ -21,8 +21,8 @@
     "active": true,
     "featuredItems": [],
     "questionnaire": false,
-    "name": "Pilot study",
-    "description": "Used as a pilot study",
+    "name": "Test study Filters",
+    "description": "Used as a test study for extra filters",
     "items": [],
     "filters": [
         {
@@ -54,14 +54,120 @@
                     "children": []
                 },
                 {
-                    "name": "Nutri-Score F",
+                    "name": "No Nutri-Score",
                     "items": [],
                     "children": []
                 }
             ],
             "name": "Nutri-Score",
-            "description": "Nutri-Score A,B,C,D and E"
+            "description": "Nutri-Score A, B, C, D and E"
         }
+        // {
+        //     "tree": [
+        //         {
+        //             "name": "Afwasmiddel",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Ananas",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Chips",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Fruit",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Fruitsappen",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Geraspte Kaas",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Granola en Muesli",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Kaas",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Keukenrol",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Kruiden en Rauwkost",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Kruiden Gemalen",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Pizzabodems",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Pulp en Passata",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Sauzen",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Servetten en Feestartikelen",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Vlees: Charcuterie",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Vlees: Gehakt",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Water",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Wijn",
+        //             "items": [],
+        //             "children": []
+        //         },
+        //         {
+        //             "name": "Yoghurt en Alternatieven",
+        //             "items": [],
+        //             "children": []
+        //         }
+        //     ],
+        //     "name": "Product Categorie",
+        //     "description": "Product Categoriën"
+        // }
     ],
     "owner": "egodden",
     "__v": 0

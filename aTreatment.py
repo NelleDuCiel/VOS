@@ -26,10 +26,14 @@ dict_NS = {
     "6378de481c00df0be16b0280": ["Nutri-Score E", 4],
     "63ee092cb4b8ac09c7639115": ["Nutri-Score F", 5],
 }
+keylist = [i["name"] for i in treatment["filters"][1]["tree"]]
 for row in all_items:
     treatment["filters"][0]["tree"][dict_NS[row["label"][0]][1]]["items"].append(
         row["_id"]
     )
+    # treatment["filters"][1]["tree"][keylist.index(row["tags"][0])]["items"].append(
+    #     row["_id"]
+    # )
 treatment["items"] = all_items
 # upload each item
 try:
