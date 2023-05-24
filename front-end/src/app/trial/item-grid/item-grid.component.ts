@@ -84,11 +84,8 @@ export class ItemGridComponent implements OnInit {
     this.filterService.filtered.subscribe((val) => {
       this.commonList = [];
       val.forEach(selectedFilter => {
-        console.log(selectedFilter);
       const newProducts = this.productService.getItemsBasedOnFilter(selectedFilter.filter, selectedFilter.type);
-      console.log(newProducts);
       this.commonList.push(...newProducts);
-      console.log(this.commonList);
       });
       if (this.commonList.length > 1 && val.length > 1) {
       const filteredList = this.commonList.filter((obj, index, self) => {
@@ -168,7 +165,8 @@ export class ItemGridComponent implements OnInit {
     const filter = { filter: !$event.value ? 'reset' : $event.value, type: 'sorting' }
     this.eventsService.recordSorting(filter);
     if (!$event.value) {
-      this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
+      // this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
+      this.dataSource.data.sort();
       this.iterator();
       return;
     }
