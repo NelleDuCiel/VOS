@@ -13,7 +13,7 @@ cookies = {  # Get session via browser debugger > Network > Cookies
 }
 httpHeader = {"Content-Type": "application/json"}
 
-all_items = json.load(open("allItems.json", "rb"))
+all_items = json.load(open("allItems_renew.json", "rb"))
 treatment = json.load(open("treatment_template.json", "rb"))
 
 # images_list = sorted(glob.glob("../../siteScraping/products/*/images/*.avif"))
@@ -24,9 +24,9 @@ dict_NS = {
     "6378de2f1c00df0be16b0267": ["Nutri-Score C", 2],
     "6378de3d1c00df0be16b0275": ["Nutri-Score D", 3],
     "6378de481c00df0be16b0280": ["Nutri-Score E", 4],
-    "63ee092cb4b8ac09c7639115": ["Nutri-Score F", 5],
+    "64610b1e24035cb258f7c65e": ["Nutri-Score F", 5],
 }
-keylist = [i["name"] for i in treatment["filters"][1]["tree"]]
+# keylist = [i["name"] for i in treatment["filters"][1]["tree"]]
 for row in all_items:
     treatment["filters"][0]["tree"][dict_NS[row["label"][0]][1]]["items"].append(
         row["_id"]

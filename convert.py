@@ -4,6 +4,9 @@ import requests
 import glob
 import os
 import numpy as np
+from tqdm import tqdm
+from PIL import Image
+import pillow_avif
 
 url = "https://goddenvos01.uantwerpen.be"
 item = "/api/item"
@@ -30,7 +33,7 @@ nsdict = {
     "C": "6378de2f1c00df0be16b0267",
     "D": "6378de3d1c00df0be16b0275",
     "E": "6378de481c00df0be16b0280",
-    "F": "63ee092cb4b8ac09c7639115",
+    "F": "64610b1e24035cb258f7c65e",
 }
 nsdict2 = {
     "A": "Nutri-Score A",
@@ -45,7 +48,7 @@ nsdict2 = {
 Hier vind je alle velden van je Excel en van de JSON. De velden van je Excel zijn row[<veldnaam>], die van de JSON zijn
 dic[<veldnaam>]. 
 """
-df = df1
+df = df2
 for c, row in df.iterrows():
     dic = {}
     dic["externalID"] = row["id"]
@@ -71,7 +74,7 @@ for c, row in df.iterrows():
         dic["nutritionalTable"]["saturatedFat"] = row["verzadigdeVetten"]
     else:
         dic["nutritionalTable"]["saturatedFat"] = 0
-    if "zout" in df.columns and row["zout"] is not None:
+    if "zout" in df.columns and row["zout"] is not None and ~np.isnan(row["zout"]):
         dic["nutritionalTable"]["salt"] = row["zout"]
     else:
         dic["nutritionalTable"]["salt"] = 0
@@ -104,49 +107,72 @@ for c, row in df.iterrows():
     # OTHER
     dic["label"] = nsdict[row["NutriScore"]]
     dic["niceness"] = row["NutriScore_value"]
-    dic["name"] = row["description"]
+    dic["name"] = row["titel"]
     dic["brand"] = row["brand"]
-    # dic["description"] = []
+    row["description"] = (
+        "" if any(pd.Series(row["description"]).isna()) else row["description"]
+    )
+    dic["description"] = [{"header": "Beschrijving", "text": row["description"]}]
     dic["netPrice"] = row["price"]
     dic["currency"] = "EUR"
     dic["amount"] = 100  # Deze moet je nog zetten naar het overeenkomstig veld in Excel
     dic["vat"] = 0
     dic["baseAttributes"] = []
     if "ingredients" in df.columns:
-        dic["nutritionalTable"]["ingredients"] = " ".join(row["ingredients"].split())
+        try:
+            dic["nutritionalTable"]["ingredients"] = " ".join(
+                row["ingredients"].split()
+            )
+        except AttributeError:
+            dic["nutritionalTable"]["ingredients"] = "Not applicable"
     else:
         dic["nutritionalTable"]["ingredients"] = "Not applicable"
     dic["allergens"] = ""
     dic["taxes"] = []
     dic["owner"] = "egodden"
     dic["__v"] = 1
-    dic["tags"] = row["name"].strip()
+    dic["tags"] = row["nameElke"].strip()
 
     data.append(dic)
 
-images_list = sorted(glob.glob("../../siteScraping/products/*/images/*"))
-images_dict = {os.path.split(f)[1]: f for f in images_list}
+images_list = sorted(glob.glob("images/**/*"))
+images_dict = {os.path.splitext(os.path.split(f)[1])[0]: f for f in images_list}
 
-for row in data:
+for row in tqdm(data, desc="Uploading items"):
+    try:
+        fn = f'{images_dict[row["externalID"]]}'
+        extension = os.path.splitext(fn)[1:]
+        if extension != ".jpg":
+            img = Image.open(fn)
+            img.save(os.path.splitext(fn)[0] + ".jpg", "jpeg")
+            fn = os.path.splitext(fn)[0] + ".jpg"
+        fi = {"image": open(fn, "rb")}
+    except:
+        print(f"{fi} not found")
+        continue
     # upload each item
     try:
         resp = requests.post(
             f"{url}{item}", headers=httpHeader, cookies=cookies, json=row
         )
-        print(resp)
     except requests.exceptions.RequestException as e:
+        print(f"error in {fi}")
         print(e)
-    files = {
-        "image": open(f'{images_dict[row["externalID"]]}', "rb")
-    }  # revositems aanpassen naar map waar images staan
-    try:
-        respImage = requests.post(
-            f"{url}{itemImage}",
-            files=files,
-            cookies=cookies,
-            data={"itemID": f'{resp.json()["_id"]}'},
-        )
-        print(respImage)
-    except requests.exceptions.RequestException as e:
-        print(e)
+        break
+
+    if resp.status_code == 200:
+        try:
+            respImage = requests.post(
+                f"{url}{itemImage}",
+                files=fi,
+                cookies=cookies,
+                data={"itemID": f'{resp.json()["_id"]}'},
+            )
+            if respImage.status_code != 200:
+                print(row)
+        except requests.exceptions.RequestException as e:
+            print(e)
+            break
+    else:
+        print(f"JSON not responsive for {fi}")
         break
