@@ -78,6 +78,7 @@ export class ProductService {
    * @returns {Array} of items representing a subset of all products matching filter. 
    */
   getItemsBasedOnFilter(filter: any, type) {
+
     if (type == 'filterTree') {
       this.filteredItems = [];
       filter.forEach(filterItem => {
@@ -106,14 +107,14 @@ export class ProductService {
   } else {
       // free text search filter
       this.filteredItems = [];
+      console.log(this.products);
+      console.log("Up");
       this.products.forEach((item) => {
         // for name and brand?
-        filter.forEach(word => {
-          if (item.name.toLowerCase().includes(word) || item.brand.toLowerCase().includes(word)) {
+          if (item.name.toLowerCase().includes(filter) || item.brand.toLowerCase().includes(filter)) {
             this.filteredItems.push(item);
           }
         });
-      });
     }
     return this.filteredItems;
   }

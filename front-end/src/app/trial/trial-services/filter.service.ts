@@ -74,25 +74,14 @@ export class FilterService {
   filterItems(filter, type) {
     this.itemsFiltered.next(true);
     if (type == 'notFilterTree') {
+      this.allSelectedFilter = [];
       let searchString = filter.toLowerCase().split(' ');
+      if (Array.isArray(searchString)){
+        searchString = searchString[0]; 
+      }
       this.selectedFilter = { filter: searchString, type };
-      if (this.allSelectedFilter.length > 0){
-        let addition = 0;
-        this.allSelectedFilter.forEach(sfilter => {
-          if (sfilter.type == type){
-            const index = this.allSelectedFilter.indexOf(sfilter);
-            if (index !== -1){
-                this.allSelectedFilter[index] = this.selectedFilter;
-                addition = 1;
-            }
-          } 
-        })
-        if (addition === 0) {
-          this.allSelectedFilter.push(this.selectedFilter);
-        }
-    } else {
       this.allSelectedFilter.push(this.selectedFilter);
-    }
+    
   } else {
     this.selectedFilter = { filter, type };
     if (this.allSelectedFilter.length > 0){
@@ -127,7 +116,6 @@ export class FilterService {
     this.selectedFilter = { filter, type: 'tagFilter' };    
     if (this.allSelectedFilter.length > 0){
     this.allSelectedFilter.forEach(sfilter => {
-      console.log("I got here");
       if (sfilter.type == 'tagFilter'){
         const index = this.allSelectedFilter.indexOf(sfilter);
         if (index !== -1){
