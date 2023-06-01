@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FilterService } from '../trial-services/filter.service';
 import { TrialTreatmentService } from '../trial-services/trial-treatment.service';
 import { EventsService } from '../trial-services/events.service';
-import { take } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 import { RoutingTrackerService } from '../trial-services/routing-tracker.service';
 import { Router } from '@angular/router';
 
@@ -52,7 +52,6 @@ export class ItemGridComponent implements OnInit {
    * 
    */
   ngOnInit() {
-    this.filterService.allSelectedFilter = [];
     this.products = [];
     if (this.filterService._getNavInfo() == undefined) { this.filterService._setNavInfo({ pageSize: this.pageSize, currentPage: this.currentPage }) }
     else {
@@ -69,10 +68,11 @@ export class ItemGridComponent implements OnInit {
         this.lengthProducts = this.products.length;
         this.setUp();
       })
-    } else {
+    } 
+    else {
       this.productService.filteredItems = [];
       this.filterService.allSelectedFilter.forEach(selectedFilter => {
-      this.products = this.productService.getItemsBasedOnFilter(this.filterService.selectedFilter.filter, this.filterService.selectedFilter.type);
+        this.products = this.productService.getItemsBasedOnFilter(selectedFilter.filter, selectedFilter.type);
       });
       this.setUp()
     }
@@ -84,16 +84,16 @@ export class ItemGridComponent implements OnInit {
     this.filterService.filtered.subscribe((val) => {
       this.commonList = [];
       val.forEach(selectedFilter => {
-      const newProducts = this.productService.getItemsBasedOnFilter(selectedFilter.filter, selectedFilter.type);
-      this.commonList.push(...newProducts);
+        const newProducts = this.productService.getItemsBasedOnFilter(selectedFilter.filter, selectedFilter.type);
+        this.commonList.push(...newProducts);
       });
       if (this.commonList.length > 1 && val.length > 1) {
-      const filteredList = this.commonList.filter((obj, index, self) => {
-        return self.filter(innerObj => innerObj._id === obj._id).length > 1;
-      });
-
-      this.products = filteredList;
-    }
+        let filteredList = this.commonList.filter((obj, index, self) => {
+          return self.filter(innerObj => innerObj._id === obj._id).length > 1;
+        });
+        filteredList = filteredList.filter((value, index, self) => self.findIndex((item) => item._id === value._id) === index)
+        this.products = filteredList;
+      }
       else {
         this.products = this.commonList;
       }
@@ -119,7 +119,7 @@ export class ItemGridComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Element>();
     // Default sorting
     // this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
-    this.products.sort(); // sort alphabetically
+    this.products.sort((a, b) => a.name.localeCompare(b.name)); // sort alphabetically
     this.dataSource.data = [...this.products];
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.length = this.dataSource.data.length;
@@ -166,7 +166,7 @@ export class ItemGridComponent implements OnInit {
     this.eventsService.recordSorting(filter);
     if (!$event.value) {
       // this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
-      this.dataSource.data.sort();
+      this.dataSource.data.sort((a, b) => a.name.localeCompare(b.name));
       this.iterator();
       return;
     }
