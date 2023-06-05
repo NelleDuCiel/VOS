@@ -100,6 +100,7 @@ export class TrialConfigComponent implements OnInit {
         this.router.navigate([`/t/${this.id}/s/${this.subjectID}/q1`]);
       } else {
         this.router.navigate(['/t/' + this.id + '/s/' + this.subjectID + '/shop/products']);
+        // window.open("https://elkegodden.wixsite.com/shopping-lijstje", "_blank");
       }
     } catch (error) {
       console.error(error);
