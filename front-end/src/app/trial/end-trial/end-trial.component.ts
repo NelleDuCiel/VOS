@@ -26,7 +26,7 @@ export class EndTrialComponent implements OnInit {
         console.log(this.customID); 
         const anchor = document.querySelector('a[href^="https://uantwerpen.eu.qualtrics.com"]');
         if (anchor) {
-          anchor.setAttribute('href', `https://uantwerpen.eu.qualtrics.com/jfe/form/SV_9Mu12cUSuEgc08C?VOSid=${this.customID}`);
+          anchor.setAttribute('href', `https://uantwerpen.eu.qualtrics.com/jfe/form/SV_cCjtklF1oewKmYm?VOSid=${this.customID}`);
         }
     });
   }
