@@ -13,7 +13,8 @@ cookies = {  # Get session via browser debugger > Network > Cookies
 }
 httpHeader = {"Content-Type": "application/json"}
 
-all_items = json.load(open("allItems_renew.json", "rb"))
+# all_items = json.load(open("allItems_renew.json", "rb"))
+all_items = json.load(open("No-label-items.json", "rb"))
 treatment = json.load(open("treatment_template.json", "rb"))
 
 # images_list = sorted(glob.glob("../../siteScraping/products/*/images/*.avif"))
@@ -26,14 +27,22 @@ dict_NS = {
     "6378de481c00df0be16b0280": ["Nutri-Score E", 4],
     "64610b1e24035cb258f7c65e": ["Nutri-Score F", 5],
 }
+nsdict_nolabel = {
+    "648350affeb1ad3a19b1717a": ["Nutri-Score A", 0],
+    "6483503bfeb1ad3a19b17177": ["Nutri-Score B", 1],
+    "648350c5feb1ad3a19b1717b": ["Nutri-Score C", 2],
+    "6483508ffeb1ad3a19b17179": ["Nutri-Score D", 3],
+    "648350d2feb1ad3a19b1717c": ["Nutri-Score E", 4],
+    "64610b1e24035cb258f7c65e": ["Nutri-Score F", 5],
+}
 # keylist = [i["name"] for i in treatment["filters"][1]["tree"]]
 for row in all_items:
-    treatment["filters"][0]["tree"][dict_NS[row["label"][0]][1]]["items"].append(
+    treatment["filters"][0]["tree"][nsdict_nolabel[row["label"][0]][1]]["items"].append(
         row["_id"]
     )
-    # treatment["filters"][1]["tree"][keylist.index(row["tags"][0])]["items"].append(
-    #     row["_id"]
-    # )
+# treatment["filters"][1]["tree"][keylist.index(row["tags"][0])]["items"].append(
+#     row["_id"]
+# )
 treatment["items"] = all_items
 # upload each item
 try:

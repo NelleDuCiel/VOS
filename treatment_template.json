@@ -21,8 +21,9 @@
     "active": true,
     "featuredItems": [],
     "questionnaire": false,
-    "name": "Pilot follow-up",
-    "description": "Used as a test study for extra filters",
+    "name": "Test Treatment E",
+    "description": "Test Treatment E: NS Not visible, ABC Sorting, Filtering Possible",
+    "external_link": "https://uantwerpen.eu.qualtrics.com/jfe/form/SV_00BpQilM02Eaz7o",
     "items": [],
     "filters": [
         {

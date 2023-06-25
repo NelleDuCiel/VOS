@@ -35,13 +35,13 @@ nsdict = {
     "E": "6378de481c00df0be16b0280",
     "F": "64610b1e24035cb258f7c65e",
 }
-nsdict2 = {
-    "A": "Nutri-Score A",
-    "B": "Nutri-Score B",
-    "C": "Nutri-Score C",
-    "D": "Nutri-Score D",
-    "E": "Nutri-Score E",
-    "F": "No Nutri-Score",
+nsdict_nolabel = {
+    "A": "648350affeb1ad3a19b1717a",
+    "B": "6483503bfeb1ad3a19b17177",
+    "C": "648350c5feb1ad3a19b1717b",
+    "D": "6483508ffeb1ad3a19b17179",
+    "E": "648350d2feb1ad3a19b1717c",
+    "F": "64610b1e24035cb258f7c65e",
 }
 # CONSTRUCT JSON Template
 """
@@ -105,7 +105,8 @@ for c, row in df.iterrows():
     dic["score"]["maxValue"] = 6
     dic["score"]["minValue"] = 1
     # OTHER
-    dic["label"] = nsdict[row["NutriScore"]]
+    dic["label"] = nsdict_nolabel[row["NutriScore"]]
+    # dic["label"] = "6480d1ccfeb1ad3a19b14c12"
     dic["niceness"] = row["NutriScore_value"]
     dic["name"] = row["titel"]
     dic["brand"] = row["brand"]
