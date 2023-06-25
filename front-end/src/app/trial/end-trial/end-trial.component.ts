@@ -20,13 +20,13 @@ export class EndTrialComponent implements OnInit {
   ngOnInit() {
     this.http.get(environment.apiURI + '/custombysubject/' + this.activatedRoute.snapshot.params.subjectID).subscribe((value) => {
        this.customID = (value as { customID: string }).customID;
-       console.log(value);
-       console.log(this.customID);
-
-        console.log(this.customID); 
         const anchor = document.querySelector('a[href^="https://uantwerpen.eu.qualtrics.com"]');
         if (anchor) {
-          anchor.setAttribute('href', `https://uantwerpen.eu.qualtrics.com/jfe/form/SV_cCjtklF1oewKmYm?VOSid=${this.customID}`);
+          // console.log(environment.apiURI + 't/' + this.activatedRoute.snapshot.params.treatmentID);
+          this.http.get(environment.apiURI + '/t/' + this.activatedRoute.snapshot.params.treatmentID).subscribe((value) => {
+            // console.log(value);
+            anchor.setAttribute('href', `${value["external_link"]}?VOSid=${this.customID}`);
+                    });
         }
     });
   }

@@ -6,6 +6,6 @@
     <button [disabled]="items.length < minNumItems" (click)="endTrial()" mat-raised-button>Shopping afsluiten en naar de enquête</button>
   </div>
   <div *ngIf="items.length < minNumItems" class="alert alert-info" role="alert">
-    Bitte wählen Sie mindestens {{minNumItems}} verschiedene producte. 
+    Kies minstens {{minNumItems}} verschillende producten. 
   </div>
 </div>

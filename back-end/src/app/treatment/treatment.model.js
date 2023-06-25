@@ -12,6 +12,7 @@ let TreatmentSchema = new Schema({
   // embedded items with full items (new items for each treatment)
   items: [Item],
   featuredItems: [String],
+  external_link: String,
   // subjects: [String],
   filters: [Tree],
   showOptions: {
