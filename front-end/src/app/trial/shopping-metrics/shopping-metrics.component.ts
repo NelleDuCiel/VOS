@@ -53,6 +53,8 @@ export class ShoppingMetricsComponent implements OnInit {
 
   get minNumItems() {
     const subjectOptions = this.trialTreatmentService.getSujectOptions();
+    console.log(subjectOptions.minAmountOfItemsPurchased);
+    console.log(subjectOptions);
     if (!subjectOptions) { return 0 }
     return subjectOptions.minAmountOfItemsPurchased ? subjectOptions.minAmountOfItemsPurchased : 0;
   }
