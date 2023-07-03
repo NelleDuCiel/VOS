@@ -3,13 +3,13 @@
     <a style="cursor: pointer" [routerLink]="[baseURL]"><span>{{titel}}</span></a>
     <span class="example-spacer"></span>
     <div>
-      <button (click)="openModal()">Toon shopping lijst</button>
+      <button (click)="openModal()">Toon booschappenlijstje</button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div id="myModal" class="modal" [hidden]="!modalVisible">
-  <span class="close" (click)="closeModal()">&times;</span>
+<div id="myModal" class="modal" (click)="closeModal()" [hidden]="!modalVisible">
+  <span class="close">&times;</span>
   <img class="modal-content" id="list-img" [src]="modalImageSrc">
   <div id="caption">{{ modalCaption }}</div>
 </div>
