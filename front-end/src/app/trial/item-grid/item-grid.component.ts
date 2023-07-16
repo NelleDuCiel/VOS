@@ -29,6 +29,7 @@ export class ItemGridComponent implements OnInit {
   dataSource: any;
   /**Names of sorting options for use in dropdown selection of sorting options. */
   filterOptions = ['Prijs oplopend', 'Prijs dalend', 'Nutri-Score'];
+  // filterOptions = ['Prijs oplopend', 'Prijs dalend'];
   /**Selection options for pagination. For dropdown seleciton of displayed products per page. */
   pageSizes = [5, 10, 20, 100];
   // show = false;
@@ -118,8 +119,8 @@ export class ItemGridComponent implements OnInit {
     this.showGrid = false;
     this.dataSource = new MatTableDataSource<Element>();
     // Default sorting
-    // this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
-    this.products.sort((a, b) => a.name.localeCompare(b.name)); // sort alphabetically
+    this.products.sort((a, b) => a.niceness - b.niceness); // sort niceness ascending least nicest products first
+    // this.products.sort((a, b) => a.name.localeCompare(b.name)); // sort alphabetically
     this.dataSource.data = [...this.products];
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator.length = this.dataSource.data.length;
@@ -165,8 +166,8 @@ export class ItemGridComponent implements OnInit {
     const filter = { filter: !$event.value ? 'reset' : $event.value, type: 'sorting' }
     this.eventsService.recordSorting(filter);
     if (!$event.value) {
-      // this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
-      this.dataSource.data.sort((a, b) => a.name.localeCompare(b.name));
+      this.dataSource.data.sort((a, b) => b.niceness - a.niceness);
+      // this.dataSource.data.sort((a, b) => a.name.localeCompare(b.name));
       this.iterator();
       return;
     }
