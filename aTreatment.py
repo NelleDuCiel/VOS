@@ -13,8 +13,8 @@ cookies = {  # Get session via browser debugger > Network > Cookies
 }
 httpHeader = {"Content-Type": "application/json"}
 
-# all_items = json.load(open("allItems_renew.json", "rb"))
-all_items = json.load(open("No-label-items.json", "rb"))
+all_items = json.load(open("allItems_renew.json", "rb"))
+# all_items = json.load(open("No-label-items.json", "rb"))
 treatment = json.load(open("treatment_template.json", "rb"))
 
 # images_list = sorted(glob.glob("../../siteScraping/products/*/images/*.avif"))
@@ -37,7 +37,7 @@ nsdict_nolabel = {
 }
 # keylist = [i["name"] for i in treatment["filters"][1]["tree"]]
 for row in all_items:
-    treatment["filters"][0]["tree"][nsdict_nolabel[row["label"][0]][1]]["items"].append(
+    treatment["filters"][0]["tree"][dict_NS[row["label"][0]][1]]["items"].append(
         row["_id"]
     )
 # treatment["filters"][1]["tree"][keylist.index(row["tags"][0])]["items"].append(

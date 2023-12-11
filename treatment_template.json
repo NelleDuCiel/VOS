@@ -16,14 +16,15 @@
     },
     "subjectOptions": {
         "money": 50,
-        "restricted": true
+        "restricted": true,
+        "minAmountOfItemsPurchased": 11
     },
     "active": true,
     "featuredItems": [],
     "questionnaire": false,
-    "name": "Test Treatment E",
-    "description": "Test Treatment E: NS Not visible, ABC Sorting, Filtering Possible",
-    "external_link": "https://uantwerpen.eu.qualtrics.com/jfe/form/SV_00BpQilM02Eaz7o",
+    "name": "Treatment G",
+    "description": "Treatment G: NS visible, NS Sorting, Filtering Possible",
+    "external_link": "https://uantwerpen.eu.qualtrics.com/jfe/form/SV_afVzxSHh9smLPOS",
     "items": [],
     "filters": [
         {
