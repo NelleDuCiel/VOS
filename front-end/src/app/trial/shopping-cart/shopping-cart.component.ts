@@ -27,7 +27,7 @@ export class ShoppingCartComponent implements OnInit {
    * 
    */
   ngOnInit() {
-    console.log(this.items);
+    // console.log(this.items);
     // this.showCart = true;
     this.eventsService.emitShowBack(true);
   }

@@ -24,10 +24,25 @@ export class HeaderComponent implements OnInit {
     private subjectService: TrialSubjectService,
   ) { }
 
+  modalVisible: boolean = false;
+  modalImageSrc: string = '';
+  modalCaption: string = '';
+  
   ngOnInit() {
   }
 
   get baseURL() {
     return `/t/${this.treatmentService.getTreatmentID()}/s/${this.subjectService.getSubjectID()}/shop/products`
+  }
+
+  openModal() {
+    this.modalVisible = true;
+    this.modalImageSrc = 'shopping-list.png';
+    this.modalCaption = 'shopping lijst';
+    console.log("image open");
+  }
+
+  closeModal(){
+    this.modalVisible=false;
   }
 }

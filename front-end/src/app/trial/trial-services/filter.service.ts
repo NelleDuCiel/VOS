@@ -35,7 +35,7 @@ export class FilterService {
    * BehaviorSubject rxjs, emits if items in shop are filtered for displaying reset button
    */
   itemsFiltered: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  allSelectedFilter: any;
+  allSelectedFilter: any = [];
 
   constructor(private http: HttpClient) { }
 
@@ -74,14 +74,36 @@ export class FilterService {
   filterItems(filter, type) {
     this.itemsFiltered.next(true);
     if (type == 'notFilterTree') {
+      this.allSelectedFilter = [];
       let searchString = filter.toLowerCase().split(' ');
+      if (Array.isArray(searchString)){
+        searchString = searchString[0]; 
+      }
       this.selectedFilter = { filter: searchString, type };
       this.allSelectedFilter.push(this.selectedFilter);
+    
+  } else {
+    this.selectedFilter = { filter, type };
+    if (this.allSelectedFilter.length > 0){
+      let addition = 0;
+      this.allSelectedFilter.forEach(sfilter => {
+        if (sfilter.type == type){
+          const index = this.allSelectedFilter.indexOf(sfilter);
+          if (index !== -1){
+              this.allSelectedFilter[index] = this.selectedFilter;
+              addition = 1;
+          }
+        } 
+      })
+      if (addition === 0) {
+        this.allSelectedFilter.push(this.selectedFilter);
+      } 
     } else {
-      this.selectedFilter = { filter, type };
       this.allSelectedFilter.push(this.selectedFilter);
     }
-    this.filtered.emit(this.allSelectedFilter);
+  }
+      this.filtered.emit(this.allSelectedFilter);
+    
   }
 
   // not in use ... 
@@ -91,8 +113,19 @@ export class FilterService {
    */
   categoryFilter(filter) {
     this.itemsFiltered.next(true);
-    this.selectedFilter = { filter, type: 'tagFilter' }
+    this.selectedFilter = { filter, type: 'tagFilter' };    
+    if (this.allSelectedFilter.length > 0){
+    this.allSelectedFilter.forEach(sfilter => {
+      if (sfilter.type == 'tagFilter'){
+        const index = this.allSelectedFilter.indexOf(sfilter);
+        if (index !== -1){
+            this.allSelectedFilter[index] = this.selectedFilter;
+        }
+      }
+    })
+  } else {
     this.allSelectedFilter.push(this.selectedFilter);
+  }
     this.filtered.emit(this.allSelectedFilter);
   }
 
