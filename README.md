@@ -1,16 +1,11 @@
 # Introduction
 
-**What is VEGS, and why use it?**
+**Purpose and origin**
+The VOS (virtual online supermarket) was developed at the University of Antwerp for <research goals of paper and paper title>. It was based on the VEGS, Virtual E-Grocery Store (see https://github.com/Kuiter/vegs-repo) and we recommend their documentation. The shop is organized into different treatments, each with its own UI and product configuration (labels, brand, nutritional values and other searcheable parameters). Study participants then get access to the treatment via a link coupled to their pannel ID. First, the participants are welcomed via an introduction screen with instructions, then in the shop, they can freely filter, search and add products to their checkout basket.
 
-Virtual E-Grocery Store (VEGS) is a configurable, and open-source web application for enabling researchers to design, and conduct experiments in the context of online shopping. The base application provides support for implementing a number of common treatment variations. Supported use cases are:
+**Implementation**
+We made the following changes with respect to the source code present in the VEGS Github repository. 
 
-- Change Displayed (Product-) Information \& Shop-Functions Based on Treatment Specification
-- Recommendations-Systems & - Agents
-- Positioning, Arrangement & (Re-) Placement
-- Partitioning & Bundling
-- Salience & Additional Information
-- (Smart) Disclosure & Feedback
-- Economic Incentives
 
 # Example
 
